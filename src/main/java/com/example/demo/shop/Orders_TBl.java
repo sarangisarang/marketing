@@ -8,7 +8,7 @@ import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Entity
-public class Orders {
+public class Orders_TBl {
     public String getOrder_No() {
         return Order_No;
     }
@@ -77,15 +77,16 @@ public class Orders {
 
     private String description;
 
-    public Customer getCustomer() {
-        return customer;
+
+    public Order_Details getOrderdetails() {
+        return Orderdetails;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setOrderdetails(Order_Details orderdetails) {
+        Orderdetails = orderdetails;
     }
 
     @ManyToOne
-    @JoinColumn(name="customer_id", nullable=false)
-    private Customer customer;
+    @JoinColumn(name="order_id", nullable=false)
+    private Order_Details Orderdetails;
 }

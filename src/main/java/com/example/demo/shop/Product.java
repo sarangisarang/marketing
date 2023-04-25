@@ -2,10 +2,30 @@ package com.example.demo.shop;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Product {
+    public Integer getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(Integer product_id) {
+        this.product_id = product_id;
+    }
+
+    public Integer getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(Integer category_id) {
+        this.category_id = category_id;
+    }
+
     @Id
+    private Integer category_id;
+    private Integer product_id;
     private String Product_Name;
     private String Product_Desc;
     private String image1;
@@ -68,15 +88,22 @@ public class Product {
         Stock = stock;
     }
 
-    public Integer getCategory_id() {
-        return Category_id;
-    }
 
-    public void setCategory_id(Integer category_id) {
-        Category_id = category_id;
-    }
 
     private Integer Prece;
     private String Stock;
-    private Integer Category_id;
+
+
+    public Orders_TBl getOrdersTBl() {
+        return ordersTBl;
+    }
+
+    public void setOrdersTBl(Orders_TBl ordersTBl) {
+        this.ordersTBl = ordersTBl;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="product_id")
+    private Orders_TBl ordersTBl;
+
 }

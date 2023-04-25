@@ -2,6 +2,8 @@ package com.example.demo.shop;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Customer {
@@ -99,4 +101,16 @@ public class Customer {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Orders_TBl getOrdersTBl1() {
+        return ordersTBl1;
+    }
+
+    public void setOrdersTBl1(Orders_TBl ordersTBl1) {
+        this.ordersTBl1 = ordersTBl1;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="product_id")
+    private Orders_TBl ordersTBl1;
 }
