@@ -2,10 +2,12 @@ package com.example.demo.shop;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Order_Details {
-    @Id
+public class OrderDetails {
+
     public Long getId() {
         return id;
     }
@@ -13,7 +15,7 @@ public class Order_Details {
     public void setId(Long id) {
         this.id = id;
     }
-
+    @Id
     private Long id;
     private Integer Product_id;
 
@@ -71,4 +73,28 @@ public class Order_Details {
     private Integer Order_id;
     private Integer Subtotal;
 
+    public Orders getOrdersTBl() {
+        return ordersTBl;
+    }
+
+    public void setOrdersTBl(Orders ordersTBl) {
+        this.ordersTBl = ordersTBl;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="order_id", nullable=false)
+    private Orders ordersTBl;
+
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="product_id", nullable = false)
+    private Product product;
 }
