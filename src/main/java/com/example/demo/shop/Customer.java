@@ -102,15 +102,27 @@ public class Customer {
         this.name = name;
     }
 
-    public orders getOrdersTBl1() {
+<<<<<<<<< Temporary merge branch 1
+    public Orders_TBl getOrdersTBl1() {
         return ordersTBl1;
     }
 
-    public void setOrdersTBl1(orders ordersTBl1) {
+    public void setOrdersTBl1(Orders_TBl ordersTBl1) {
+=========
+    public Orders getOrdersTBl1() {
+        return ordersTBl1;
+    }
+
+    public void setOrdersTBl1(Orders ordersTBl1) {
+>>>>>>>>> Temporary merge branch 2
         this.ordersTBl1 = ordersTBl1;
     }
 
     @ManyToOne
     @JoinColumn(name="product_id")
-    private orders ordersTBl1;
+<<<<<<<<< Temporary merge branch 1
+    private Orders_TBl ordersTBl1;
+=========
+    private Orders ordersTBl1;
+>>>>>>>>> Temporary merge branch 2
 }
