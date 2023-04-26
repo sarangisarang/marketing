@@ -2,16 +2,30 @@ package com.example.demo.shop;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Customer {
 
+
     @Id
-    private Long id;
-    private String name;
+    private Long Customer_id;
     private String Costumer_email;
+    private String First_name;
+    private String Last_name;
+    private String Password;
+    private String Address;
+    private Integer Postcode;
+    private String City;
+    private Integer Phone;
+
+
+    public Long getCustomer_id() {
+        return Customer_id;
+    }
+
+    public void setCustomer_id(Long customer_id) {
+        Customer_id = customer_id;
+    }
 
     public String getCostumer_email() {
         return Costumer_email;
@@ -76,44 +90,4 @@ public class Customer {
     public void setPhone(Integer phone) {
         Phone = phone;
     }
-
-    private String First_name;
-    private String Last_name;
-    private String Password;
-    private String Address;
-    private Integer Postcode;
-    private String City;
-    private Integer Phone;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    public Orders getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Orders orders) {
-        this.orders = orders;
-    }
-
-    @ManyToOne
-    @JoinColumn(name="product_id")
-
-    private Orders orders;
-
 }
