@@ -8,7 +8,7 @@ import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Entity
-public class orders {
+public class Orders {
     public String getOrder_No() {
         return Order_No;
     }

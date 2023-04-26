@@ -73,17 +73,17 @@ public class OrderDetails {
     private Integer Order_id;
     private Integer Subtotal;
 
-    public orders getOrdersTBl() {
+    public Orders getOrdersTBl() {
         return ordersTBl;
     }
 
-    public void setOrdersTBl(orders ordersTBl) {
+    public void setOrdersTBl(Orders ordersTBl) {
         this.ordersTBl = ordersTBl;
     }
 
     @ManyToOne
     @JoinColumn(name="order_id", nullable=false)
-    private orders ordersTBl;
+    private Orders ordersTBl;
 
 
     public Product getProduct() {
