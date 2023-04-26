@@ -87,16 +87,16 @@ public class Product {
     private String Stock;
 
 
-    public Orders getOrdersTBl() {
+    public orders getOrdersTBl() {
         return ordersTBl;
     }
 
-    public void setOrdersTBl(Orders ordersTBl) {
+    public void setOrdersTBl(orders ordersTBl) {
         this.ordersTBl = ordersTBl;
     }
 
     @ManyToOne
     @JoinColumn(name="product_id")
-    private Orders ordersTBl;
+    private orders ordersTBl;
 
 }

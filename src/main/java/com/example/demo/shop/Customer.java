@@ -102,15 +102,15 @@ public class Customer {
         this.name = name;
     }
 
-    public Orders getOrdersTBl1() {
+    public orders getOrdersTBl1() {
         return ordersTBl1;
     }
 
-    public void setOrdersTBl1(Orders ordersTBl1) {
+    public void setOrdersTBl1(orders ordersTBl1) {
         this.ordersTBl1 = ordersTBl1;
     }
 
     @ManyToOne
     @JoinColumn(name="product_id")
-    private Orders ordersTBl1;
+    private orders ordersTBl1;
 }
