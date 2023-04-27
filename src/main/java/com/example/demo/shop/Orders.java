@@ -9,17 +9,14 @@ import java.time.LocalDate;
 
 @Entity
 public class Orders {
-
-
     @Id
     private Long Order_id;
     private String Order_No;
     private LocalDate Order_Date;
     private String Order_Total;
-    private String Customer_id;
+
     private LocalDate Shipping_date;
     private String Is_Delivered;
-
 
     public Long getOrder_id() {
         return Order_id;
@@ -27,15 +24,6 @@ public class Orders {
 
     public void setOrder_id(Long order_id) {
         Order_id = order_id;
-    }
-
-    public String getCustomer_id() {
-        return Customer_id;
-    }
-
-
-    public void setCustomer_id(String customer_id) {
-        Customer_id = customer_id;
     }
 
 
@@ -88,6 +76,6 @@ public class Orders {
     }
 
     @ManyToOne
-    @JoinColumn(name="Customer_id", nullable=false)
+    @JoinColumn(name="Customer_id")
     private Customer customer;
 }

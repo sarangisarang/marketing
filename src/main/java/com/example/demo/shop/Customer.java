@@ -5,8 +5,6 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Customer {
-
-
     @Id
     private Long Customer_id;
     private String Costumer_email;

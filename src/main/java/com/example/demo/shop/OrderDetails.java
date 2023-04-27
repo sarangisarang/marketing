@@ -7,14 +7,12 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class OrderDetails{
-
-
     @Id
     private Long Order_Details_id;
-    private Integer Product_id;
+
     private String Product_Qty;
     private Integer Product_Price;
-    private Integer Order_id;
+
     private Integer Subtotal;
 
     public Long getOrder_Details_id() {
@@ -23,24 +21,6 @@ public class OrderDetails{
 
     public void setOrder_Details_id(Long order_Details_id) {
         Order_Details_id = order_Details_id;
-    }
-
-    public Integer getOrder_id() {
-        return Order_id;
-    }
-
-    public void setOrder_id(Integer order_id) {
-        Order_id = order_id;
-    }
-
-
-
-    public Integer getProduct_id() {
-        return Product_id;
-    }
-
-    public void setProduct_id(Integer product_id) {
-        Product_id = product_id;
     }
 
     public String getProduct_Qty() {
@@ -84,10 +64,10 @@ public class OrderDetails{
     }
 
     @ManyToOne
-    @JoinColumn(name="Order_id", nullable=false)
+    @JoinColumn(name="Order_id")
     private Orders orders;
 
     @ManyToOne
-    @JoinColumn(name="Product_id", nullable = false)
+    @JoinColumn(name="Product_id")
     private Product product;
 }

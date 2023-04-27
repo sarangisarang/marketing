@@ -1,5 +1,4 @@
 package com.example.demo.shop;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -7,8 +6,6 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Product {
-
-
     @Id
     private Long Product_id;
     private String Product_Name;
@@ -18,7 +15,7 @@ public class Product {
     private String image3;
     private Integer Prece;
     private String Stock;
-    private Integer Category_id;
+
 
     public Long getProduct_id() {
         return Product_id;
@@ -28,13 +25,6 @@ public class Product {
         Product_id = product_id;
     }
 
-    public Integer getCategory_id() {
-        return Category_id;
-    }
-
-    public void setCategory_id(Integer category_id) {
-        Category_id = category_id;
-    }
 
     public String getProduct_Name() {
         return Product_Name;
