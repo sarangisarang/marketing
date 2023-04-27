@@ -1,47 +1,48 @@
 package com.example.demo.shop;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 
 @Entity
 public class Category {
     @Id
-    private Long Category_id;
-    private String Category_Name;
-    private String Category_Image;
-    private String Category_Description;
+    private Long id;
+    private String name;
+    private String image;
+    private String description;
 
 
-    public Long getCategory_id() {
-        return Category_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setCategory_id(Long category_id) {
-        Category_id = category_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getCategory_Name() {
-        return Category_Name;
+    public String getName() {
+        return name;
     }
 
-    public void setCategory_Name(String category_Name) {
-        Category_Name = category_Name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCategory_Image() {
-        return Category_Image;
+    public String getImage() {
+        return image;
     }
 
-    public void setCategory_Image(String category_Image) {
-        Category_Image = category_Image;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getCategory_Description() {
-        return Category_Description;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCategory_Description(String category_Description) {
-        Category_Description = category_Description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

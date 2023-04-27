@@ -1,0 +1,1 @@
+insert into Category (id,name,image,description) values (1,'book','literatura','beletresica');

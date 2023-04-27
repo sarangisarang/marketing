@@ -6,10 +6,10 @@ import jakarta.persistence.Id;
 @Entity
 public class Customer {
     @Id
-    private Long Customer_id;
-    private String Costumer_email;
-    private String First_name;
-    private String Last_name;
+    private Long id;
+    private String email;
+    private String firstName;
+    private String lastName;
     private String Password;
     private String Address;
     private Integer Postcode;
@@ -17,36 +17,36 @@ public class Customer {
     private Integer Phone;
 
 
-    public Long getCustomer_id() {
-        return Customer_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setCustomer_id(Long customer_id) {
-        Customer_id = customer_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getCostumer_email() {
-        return Costumer_email;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCostumer_email(String costumer_email) {
-        Costumer_email = costumer_email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getFirst_name() {
-        return First_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        First_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return Last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        Last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {
