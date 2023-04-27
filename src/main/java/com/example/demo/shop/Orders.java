@@ -10,61 +10,61 @@ import java.time.LocalDate;
 @Entity
 public class Orders {
     @Id
-    private Long Order_id;
-    private String Order_No;
-    private LocalDate Order_Date;
-    private String Order_Total;
+    private Long id;
+    private String orderNo;
+    private LocalDate orderDate;
+    private String orderTotal;
 
-    private LocalDate Shipping_date;
-    private String Is_Delivered;
+    private LocalDate shippingDate;
+    private String isDelivered;
 
-    public Long getOrder_id() {
-        return Order_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setOrder_id(Long order_id) {
-        Order_id = order_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
 
-    public String getOrder_No() {
-        return Order_No;
+    public String getOrderNo() {
+        return orderNo;
     }
 
-    public void setOrder_No(String order_No) {
-        Order_No = order_No;
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
     }
 
-    public LocalDate getOrder_Date() {
-        return Order_Date;
+    public LocalDate getOrderDate() {
+        return orderDate;
     }
 
-    public void setOrder_Date(LocalDate order_Date) {
-        Order_Date = order_Date;
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public String getOrder_Total() {
-        return Order_Total;
+    public String getOrderTotal() {
+        return orderTotal;
     }
 
-    public void setOrder_Total(String order_Total) {
-        Order_Total = order_Total;
+    public void setOrderTotal(String orderTotal) {
+        this.orderTotal = orderTotal;
     }
 
-    public String getIs_Delivered() {
-        return Is_Delivered;
+    public String getIsDelivered() {
+        return isDelivered;
     }
 
-    public void setIs_Delivered(String is_Delivered) {
-        Is_Delivered = is_Delivered;
+    public void setIsDelivered(String isDelivered) {
+        this.isDelivered = isDelivered;
     }
 
-    public LocalDate getShipping_date() {
-        return Shipping_date;
+    public LocalDate getShippingDate() {
+        return shippingDate;
     }
 
-    public void setShipping_date(LocalDate shipping_date) {
-        Shipping_date = shipping_date;
+    public void setShippingDate(LocalDate shippingDate) {
+        this.shippingDate = shippingDate;
     }
 
     public Customer getCustomer() {

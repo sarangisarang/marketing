@@ -8,35 +8,35 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class OrderDetails{
     @Id
-    private Long Order_Details_id;
+    private Long id;
 
-    private String Product_Qty;
-    private Integer Product_Price;
+    private String Qty;
+    private Integer Price;
 
     private Integer Subtotal;
 
-    public Long getOrder_Details_id() {
-        return Order_Details_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setOrder_Details_id(Long order_Details_id) {
-        Order_Details_id = order_Details_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getProduct_Qty() {
-        return Product_Qty;
+    public String getQty() {
+        return Qty;
     }
 
-    public void setProduct_Qty(String product_Qty) {
-        Product_Qty = product_Qty;
+    public void setQty(String qty) {
+        Qty = qty;
     }
 
-    public Integer getProduct_Price() {
-        return Product_Price;
+    public Integer getPrice() {
+        return Price;
     }
 
-    public void setProduct_Price(Integer product_Price) {
-        Product_Price = product_Price;
+    public void setPrice(Integer price) {
+        Price = price;
     }
 
     public Integer getSubtotal() {

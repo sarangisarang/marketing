@@ -7,9 +7,9 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Product {
     @Id
-    private Long Product_id;
-    private String Product_Name;
-    private String Product_Desc;
+    private Long id;
+    private String productName;
+    private String productDesc;
     private String image1;
     private String image2;
     private String image3;
@@ -17,29 +17,29 @@ public class Product {
     private String Stock;
 
 
-    public Long getProduct_id() {
-        return Product_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setProduct_id(Long product_id) {
-        Product_id = product_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
 
-    public String getProduct_Name() {
-        return Product_Name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProduct_Name(String product_Name) {
-        Product_Name = product_Name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public String getProduct_Desc() {
-        return Product_Desc;
+    public String getProductDesc() {
+        return productDesc;
     }
 
-    public void setProduct_Desc(String product_Desc) {
-        Product_Desc = product_Desc;
+    public void setProductDesc(String productDesc) {
+        this.productDesc = productDesc;
     }
 
     public String getImage1() {
