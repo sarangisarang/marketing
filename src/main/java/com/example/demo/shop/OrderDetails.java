@@ -9,56 +9,43 @@ import jakarta.persistence.ManyToOne;
 public class OrderDetails{
     @Id
     private Long id;
-
     private String Qty;
     private Integer Price;
-
     private Integer Subtotal;
 
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getQty() {
         return Qty;
     }
-
     public void setQty(String qty) {
         Qty = qty;
     }
-
     public Integer getPrice() {
         return Price;
     }
-
     public void setPrice(Integer price) {
         Price = price;
     }
-
     public Integer getSubtotal() {
         return Subtotal;
     }
-
     public void setSubtotal(Integer subtotal) {
         Subtotal = subtotal;
     }
-
     public Orders getOrders() {
         return orders;
     }
-
     public void setOrders(Orders orders) {
         this.orders = orders;
     }
-
     public Product getProduct() {
         return product;
     }
-
     public void setProduct(Product product) {
         this.product = product;
     }

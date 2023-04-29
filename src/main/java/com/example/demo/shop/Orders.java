@@ -11,13 +11,24 @@ import java.time.LocalDate;
 public class Orders {
     @Id
     private Long id;
-    private String orderNo;
+    private Integer orderNo;
     private LocalDate orderDate;
-    private String orderTotal;
-
+    private Integer orderTotal;
     private LocalDate shippingDate;
     private String isDelivered;
 
+    public Integer getOrderTotal() {
+        return orderTotal;
+    }
+    public void setOrderTotal(Integer orderTotal) {
+        this.orderTotal = orderTotal;
+    }
+    public Integer getOrderNo() {
+        return orderNo;
+    }
+    public void setOrderNo(Integer orderNo) {
+        this.orderNo = orderNo;
+    }
     public Long getId() {
         return id;
     }
@@ -26,29 +37,12 @@ public class Orders {
         this.id = id;
     }
 
-
-    public String getOrderNo() {
-        return orderNo;
-    }
-
-    public void setOrderNo(String orderNo) {
-        this.orderNo = orderNo;
-    }
-
     public LocalDate getOrderDate() {
         return orderDate;
     }
 
     public void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;
-    }
-
-    public String getOrderTotal() {
-        return orderTotal;
-    }
-
-    public void setOrderTotal(String orderTotal) {
-        this.orderTotal = orderTotal;
     }
 
     public String getIsDelivered() {
