@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Customer {
     @Id
-    private Long id;
+    private String id;
     private String email;
     private String firstName;
     private String lastName;
@@ -17,11 +17,11 @@ public class Customer {
     private Integer Phone;
 
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

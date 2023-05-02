@@ -7,7 +7,7 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Product {
     @Id
-    private Long id;
+    private String id;
     private String productName;
     private String productDesc;
     private String image1;
@@ -17,11 +17,11 @@ public class Product {
     private String Stock;
 
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

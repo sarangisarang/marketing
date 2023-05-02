@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Entity
 public class Orders {
     @Id
-    private Long id;
+    private String id;
     private Integer orderNo;
     private LocalDate orderDate;
     private Integer orderTotal;
@@ -29,11 +29,11 @@ public class Orders {
     public void setOrderNo(Integer orderNo) {
         this.orderNo = orderNo;
     }
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
