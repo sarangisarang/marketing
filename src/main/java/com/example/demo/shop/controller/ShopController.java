@@ -33,10 +33,6 @@ public class ShopController{
         return categoryRepository.findById(id).orElseThrow();
     }
 
-    @PostMapping("/category")
-    public Category saveCategory(@RequestBody Category category){
-        category.setId(UUID.randomUUID().toString()); return categoryRepository.save(category);
-    }
 
     @PutMapping("/category/{id}")
     public Category updateCategory(@RequestBody Category category, @PathVariable String id){
@@ -118,9 +114,12 @@ public class ShopController{
         return ordersRepository.findById(id).orElseThrow();
     }
 
-    @PostMapping("/order")
-    public Orders saveorders(@RequestBody Orders orders){
-        orders.setId(UUID.randomUUID().toString()); return ordersRepository.save(orders);
+    @PostMapping("/order/{CustumerId}")
+    public Orders saveorders(@RequestBody Orders orders, @PathVariable String CustumerId){
+        orders.setId(UUID.randomUUID().toString());
+        Customer customer = customerRepository.findById(CustumerId).orElseThrow();
+        orders.setCustomer(customer);
+        return ordersRepository.save(orders);
     }
 
     @PutMapping("/order/{id}")
@@ -146,9 +145,12 @@ public class ShopController{
         return productRepository.findById(id).orElseThrow();
     }
 
-    @PostMapping("/product")
-    public Product saveorders(@RequestBody Product product){
-        product.setId(UUID.randomUUID().toString()); return productRepository.save(product);
+    @PostMapping("/product/{categoryId}")
+    public Product saveProduct(@RequestBody Product product, @PathVariable String categoryId){
+        product.setId(UUID.randomUUID().toString());
+        Category category = categoryRepository.findById(categoryId).orElseThrow();
+        product.setCategory(category);
+        return productRepository.save(product);
     }
 
     @PutMapping("/product/{id}")

@@ -15,7 +15,9 @@ public class Product {
     private String image3;
     private Integer Prece;
     private String Stock;
-
+    @ManyToOne
+    @JoinColumn(name="Category_id")
+    private Category category;
 
     public String getId() {
         return id;
@@ -24,7 +26,6 @@ public class Product {
     public void setId(String id) {
         this.id = id;
     }
-
 
     public String getProductName() {
         return productName;
@@ -90,7 +91,4 @@ public class Product {
         this.category = category;
     }
 
-    @ManyToOne
-    @JoinColumn(name="Category_id")
-    private Category category;
 }

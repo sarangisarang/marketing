@@ -16,7 +16,10 @@ public class Orders {
     private Integer orderTotal;
     private LocalDate shippingDate;
     private String isDelivered;
+    @ManyToOne
+    @JoinColumn(name="Customer_id")
 
+    private Customer customer;
     public Integer getOrderTotal() {
         return orderTotal;
     }
@@ -69,7 +72,4 @@ public class Orders {
         this.customer = customer;
     }
 
-    @ManyToOne
-    @JoinColumn(name="Customer_id")
-    private Customer customer;
 }
