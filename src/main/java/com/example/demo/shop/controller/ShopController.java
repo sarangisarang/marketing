@@ -5,6 +5,7 @@ import com.example.demo.shop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,8 +44,11 @@ public class ShopController{
     public Category updateCategory(@RequestBody Category category, @PathVariable String id){
         Category categoryToUpdate = categoryRepository.findById(id).orElseThrow();
         categoryToUpdate.setName(category.getName());
+        categoryToUpdate.setDescription(category.getDescription());
+        categoryToUpdate.setImage(category.getImage());
         return categoryRepository.save(categoryToUpdate);
     }
+
 
     @DeleteMapping("/category/{id}")
     public void deleteCategory(@PathVariable String id) {
@@ -73,7 +77,14 @@ public class ShopController{
     @PutMapping("/customer/{id}")
     public Customer updateCustomer(@RequestBody Customer customer, @PathVariable String id){
         Customer customerToUpdate = customerRepository.findById(id).orElseThrow();
-        customerToUpdate.setLastName(customer.getFirstName());
+        customerToUpdate.setLastName(customer.getLastName());
+        customerToUpdate.setFirstName(customer.getFirstName());
+        customerToUpdate.setEmail(customer.getEmail());
+        customerToUpdate.setPassword(customer.getPassword());
+        customerToUpdate.setAddress(customer.getAddress());
+        customerToUpdate.setPostcode(customer.getPostcode());
+        customerToUpdate.setCity(customer.getCity());
+        customerToUpdate.setPhone(customer.getPhone());
         return customerRepository.save(customerToUpdate);
     }
 
@@ -108,7 +119,9 @@ public class ShopController{
     @PutMapping("/orderdetail/{id}")
     public OrderDetails updateCustomer(@RequestBody OrderDetails orderDetails, @PathVariable String id){
         OrderDetails orderDetailsToUpdate = orderDetailsRepository.findById(id).orElseThrow();
-        orderDetailsToUpdate.setQty(orderDetailsToUpdate.getId());
+        orderDetailsToUpdate.setQty(orderDetails.getQty());
+        orderDetailsToUpdate.setPrice(orderDetails.getPrice());
+        orderDetailsToUpdate.setSubtotal(orderDetails.getSubtotal());
         return orderDetailsRepository.save(orderDetailsToUpdate);
     }
 
@@ -140,7 +153,11 @@ public class ShopController{
     @PutMapping("/order/{id}")
     public Orders updateCustomer(@RequestBody Orders orders, @PathVariable String id){
         Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
-        ordersToUpdate.setOrderNo(ordersToUpdate.getOrderNo());
+        ordersToUpdate.setOrderNo(orders.getOrderNo());
+        ordersToUpdate.setOrderDate(orders.getOrderDate());
+        ordersToUpdate.setOrderTotal(orders.getOrderTotal());
+        ordersToUpdate.setShippingDate(orders.getShippingDate());
+        ordersToUpdate.setIsDelivered(orders.getIsDelivered());
         return ordersRepository.save(ordersToUpdate);
     }
 
@@ -172,7 +189,13 @@ public class ShopController{
     @PutMapping("/product/{id}")
     public Product updateProucts(@RequestBody Product product, @PathVariable String id){
         Product productsToUpdate = productRepository.findById(id).orElseThrow();
-        productsToUpdate.setProductName(productsToUpdate.getProductName());
+        productsToUpdate.setProductName(product.getProductName());
+        productsToUpdate.setProductDesc(product.getProductDesc());
+        productsToUpdate.setImage1(product.getImage1());
+        productsToUpdate.setImage2(product.getImage2());
+        productsToUpdate.setImage3(product.getImage3());
+        productsToUpdate.setPrece(product.getPrece());
+        productsToUpdate.setStock(product.getStock());
         return productRepository.save(productsToUpdate);
     }
 
