@@ -17,8 +17,8 @@ public class OrderDetails{
 
     @ManyToOne
     @JoinColumn(name="Product_id")
-
     private Product product;
+
     public String getId(){
         return id;
     }

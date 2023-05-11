@@ -33,6 +33,11 @@ public class ShopController{
     public Category getCategory(@PathVariable String id) {
         return categoryRepository.findById(id).orElseThrow();
     }
+    @PostMapping("/category")
+    public Category saveorders(@RequestBody Category category){
+        category.setId(UUID.randomUUID().toString());
+        return categoryRepository.save(category);
+    }
 
     @PutMapping("/category/{id}")
     public Category updateCategory(@RequestBody Category category, @PathVariable String id){
