@@ -17,75 +17,75 @@ public class Customer {
     private Integer Phone;
 
 
-    public String getId() {
+    public String getId(){
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(String id){
         this.id = id;
     }
 
-    public String getEmail() {
+    public String getEmail(){
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email){
         this.email = email;
     }
 
-    public String getFirstName() {
+    public String getFirstName(){
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName){
         this.firstName = firstName;
     }
 
-    public String getLastName() {
+    public String getLastName(){
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(String lastName){
         this.lastName = lastName;
     }
 
-    public String getPassword() {
+    public String getPassword(){
         return Password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password){
         Password = password;
     }
 
-    public String getAddress() {
+    public String getAddress(){
         return Address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(String address){
         Address = address;
     }
 
-    public Integer getPostcode() {
+    public Integer getPostcode(){
         return Postcode;
     }
 
-    public void setPostcode(Integer postcode) {
+    public void setPostcode(Integer postcode){
         Postcode = postcode;
     }
 
-    public String getCity() {
+    public String getCity(){
         return City;
     }
 
-    public void setCity(String city) {
+    public void setCity(String city){
         City = city;
     }
 
-    public Integer getPhone() {
+    public Integer getPhone(){
         return Phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(Integer phone){
         Phone = phone;
     }
 }

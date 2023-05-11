@@ -19,76 +19,75 @@ public class Product {
     @JoinColumn(name="Category_id")
     private Category category;
 
-    public String getId() {
+    public String getId(){
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(String id){
         this.id = id;
     }
 
-    public String getProductName() {
+    public String getProductName(){
         return productName;
     }
 
-    public void setProductName(String productName) {
+    public void setProductName(String productName){
         this.productName = productName;
     }
 
-    public String getProductDesc() {
+    public String getProductDesc(){
         return productDesc;
     }
 
-    public void setProductDesc(String productDesc) {
+    public void setProductDesc(String productDesc){
         this.productDesc = productDesc;
     }
 
-    public String getImage1() {
+    public String getImage1(){
         return image1;
     }
 
-    public void setImage1(String image1) {
+    public void setImage1(String image1){
         this.image1 = image1;
     }
 
-    public String getImage2() {
+    public String getImage2(){
         return image2;
     }
 
-    public void setImage2(String image2) {
+    public void setImage2(String image2){
         this.image2 = image2;
     }
 
-    public String getImage3() {
+    public String getImage3(){
         return image3;
     }
 
-    public void setImage3(String image3) {
+    public void setImage3(String image3){
         this.image3 = image3;
     }
 
-    public Integer getPrece() {
+    public Integer getPrece(){
         return Prece;
     }
 
-    public void setPrece(Integer prece) {
+    public void setPrece(Integer prece){
         Prece = prece;
     }
 
-    public String getStock() {
+    public String getStock(){
         return Stock;
     }
 
-    public void setStock(String stock) {
+    public void setStock(String stock){
         Stock = stock;
     }
 
-    public Category getCategory() {
+    public Category getCategory(){
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(Category category){
         this.category = category;
     }
-
 }

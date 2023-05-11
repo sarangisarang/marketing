@@ -22,7 +22,8 @@ public class ShopController{
     @Autowired
     private CustomerRepository customerRepository;
 
-    //GetMapping, PostMapping, PutMapping, DeleteMapping
+    //GetMapping, PostMapping, PutMapping, DeleteMapping.
+
     @GetMapping("/categories")
     public List<Category> getAllCategories(){
         return categoryRepository.findAll();
@@ -32,7 +33,6 @@ public class ShopController{
     public Category getCategory(@PathVariable String id) {
         return categoryRepository.findById(id).orElseThrow();
     }
-
 
     @PutMapping("/category/{id}")
     public Category updateCategory(@RequestBody Category category, @PathVariable String id){
@@ -47,7 +47,8 @@ public class ShopController{
         categoryRepository.delete(category);
     }
 
-    //GetMapping, Getmappig(add Id), PostMapping, PutMapping, DeleteMapping
+    //GetMapping, GetMappig(add Id), PostMapping, PutMapping, DeleteMapping.
+
     @GetMapping("/customers")
     public List<Customer> getAllCustumeries(){
         return customerRepository.findAll();
@@ -60,7 +61,8 @@ public class ShopController{
 
     @PostMapping("/customer")
     public Customer saveCustumer(@RequestBody Customer customer){
-        customer.setId(UUID.randomUUID().toString()); return customerRepository.save(customer);
+        customer.setId(UUID.randomUUID().toString());
+        return customerRepository.save(customer);
     }
 
     @PutMapping("/customer/{id}")
@@ -75,7 +77,9 @@ public class ShopController{
         Customer customer = customerRepository.findById(id).orElseThrow();
         customerRepository.delete(customer);
     }
-    // GetMapping, PostMapping, PutMapping, DeleteMapping
+
+    // GetMapping, PostMapping, PutMapping, DeleteMapping.
+
     @GetMapping("/orderdetails")
     public  List<OrderDetails> getallOrderDetails(){
         return orderDetailsRepository.findAll();
@@ -103,14 +107,13 @@ public class ShopController{
         return orderDetailsRepository.save(orderDetailsToUpdate);
     }
 
-
-
     @DeleteMapping("/orderdetails/{id}")
     public void deleteorderdetails(@PathVariable String id) {
         OrderDetails orderDetails = orderDetailsRepository.findById(id).orElseThrow();
         orderDetailsRepository.delete(orderDetails);
     }
-    // GetMapping, PostMapping, PutMapping, DeleteMapping
+
+    // GetMapping, PostMapping, PutMapping, DeleteMapping.
     @GetMapping("/order")
     public List<Orders> getallorders(){
         return ordersRepository.findAll();
@@ -141,7 +144,8 @@ public class ShopController{
         Orders orders = ordersRepository.findById(id).orElseThrow();
         ordersRepository.delete(orders);
     }
-    // GetMapping, PostMapping, PutMapping, DeleteMapping
+
+    // GetMapping, PostMapping, PutMapping, DeleteMapping.
     @GetMapping("/products")
     public List<Product> getallproduct(){
         return productRepository.findAll();
@@ -171,5 +175,6 @@ public class ShopController{
     public void deleteproducts(@PathVariable String id) {
         Product product = productRepository.findById(id).orElseThrow();
         productRepository.delete(product);
+
     }
 }

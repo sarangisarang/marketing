@@ -20,56 +20,55 @@ public class Orders {
     @JoinColumn(name="Customer_id")
 
     private Customer customer;
-    public Integer getOrderTotal() {
+    public Integer getOrderTotal(){
         return orderTotal;
     }
-    public void setOrderTotal(Integer orderTotal) {
+    public void setOrderTotal(Integer orderTotal){
         this.orderTotal = orderTotal;
     }
-    public Integer getOrderNo() {
+    public Integer getOrderNo(){
         return orderNo;
     }
-    public void setOrderNo(Integer orderNo) {
+    public void setOrderNo(Integer orderNo){
         this.orderNo = orderNo;
     }
-    public String getId() {
+    public String getId(){
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(String id){
         this.id = id;
     }
 
-    public LocalDate getOrderDate() {
+    public LocalDate getOrderDate(){
         return orderDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
+    public void setOrderDate(LocalDate orderDate){
         this.orderDate = orderDate;
     }
 
-    public String getIsDelivered() {
+    public String getIsDelivered(){
         return isDelivered;
     }
 
-    public void setIsDelivered(String isDelivered) {
+    public void setIsDelivered(String isDelivered){
         this.isDelivered = isDelivered;
     }
 
-    public LocalDate getShippingDate() {
+    public LocalDate getShippingDate(){
         return shippingDate;
     }
 
-    public void setShippingDate(LocalDate shippingDate) {
+    public void setShippingDate(LocalDate shippingDate){
         this.shippingDate = shippingDate;
     }
 
-    public Customer getCustomer() {
+    public Customer getCustomer(){
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(Customer customer){
         this.customer = customer;
     }
-
 }
