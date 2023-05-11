@@ -81,9 +81,14 @@ public class ShopController{
         return orderDetailsRepository.findAll();
     }
 
-    @PostMapping("/orderdetail")
-    public OrderDetails saveorderdetails(@RequestBody OrderDetails orderDetails){
-        orderDetails.setId(UUID.randomUUID().toString()); return orderDetailsRepository.save(orderDetails);
+    @PostMapping("/orderdetail/{orderId}/{productId}")
+    public OrderDetails saveorderdetails(@RequestBody OrderDetails orderDetails,@PathVariable String orderId, @PathVariable String productId){
+        orderDetails.setId(UUID.randomUUID().toString());
+        Orders orders = ordersRepository.findById(orderId).orElseThrow();
+        Product product = productRepository.findById(productId).orElseThrow();
+        orderDetails.setOrders(orders);
+        orderDetails.setProduct(product);
+        return orderDetailsRepository.save(orderDetails);
     }
 
     @GetMapping("/orderdetail/{id}")
@@ -97,6 +102,8 @@ public class ShopController{
         orderDetailsToUpdate.setQty(orderDetailsToUpdate.getId());
         return orderDetailsRepository.save(orderDetailsToUpdate);
     }
+
+
 
     @DeleteMapping("/orderdetails/{id}")
     public void deleteorderdetails(@PathVariable String id) {
