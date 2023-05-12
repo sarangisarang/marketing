@@ -34,6 +34,7 @@ public class ShopController{
     public Category getCategory(@PathVariable String id) {
         return categoryRepository.findById(id).orElseThrow();
     }
+
     @PostMapping("/category")
     public Category saveorders(@RequestBody Category category){
         category.setId(UUID.randomUUID().toString());
@@ -48,7 +49,6 @@ public class ShopController{
         categoryToUpdate.setImage(category.getImage());
         return categoryRepository.save(categoryToUpdate);
     }
-
 
     @DeleteMapping("/category/{id}")
     public void deleteCategory(@PathVariable String id) {
