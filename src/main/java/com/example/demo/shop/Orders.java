@@ -1,5 +1,6 @@
 package com.example.demo.shop;
 
+import com.example.demo.shop.service.OrderStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -16,6 +17,16 @@ public class Orders {
     private Integer orderTotal;
     private LocalDate shippingDate;
     private String isDelivered;
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    private OrderStatus orderStatus;
     @ManyToOne
     @JoinColumn(name="Customer_id")
 
