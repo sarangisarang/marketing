@@ -1,10 +1,7 @@
 package com.example.demo.shop;
 
 import com.example.demo.shop.service.OrderStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -18,6 +15,13 @@ public class Orders {
     private LocalDate shippingDate;
     private String isDelivered;
 
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
+
+    @ManyToOne
+    @JoinColumn(name="Customer_id")
+    private Customer customer;
+
     public OrderStatus getOrderStatus() {
         return orderStatus;
     }
@@ -26,23 +30,22 @@ public class Orders {
         this.orderStatus = orderStatus;
     }
 
-    private OrderStatus orderStatus;
-    @ManyToOne
-    @JoinColumn(name="Customer_id")
-
-    private Customer customer;
     public Integer getOrderTotal(){
         return orderTotal;
     }
+
     public void setOrderTotal(Integer orderTotal){
         this.orderTotal = orderTotal;
     }
+
     public Integer getOrderNo(){
         return orderNo;
     }
+
     public void setOrderNo(Integer orderNo){
         this.orderNo = orderNo;
     }
+
     public String getId(){
         return id;
     }

@@ -161,6 +161,13 @@ public class ShopController{
         return ordersRepository.save(ordersToUpdate);
     }
 
+    @PutMapping("/order/{id}/{status}")
+    public Orders updateOrderStatus(@PathVariable String id, @PathVariable String status){
+        Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
+        ordersToUpdate.setOrderStatus(OrderStatus.Processing);
+        return ordersRepository.save(ordersToUpdate);
+    }
+
     @DeleteMapping("/order/{id}")
     public void deleteorders(@PathVariable String id) {
         Orders orders = ordersRepository.findById(id).orElseThrow();
