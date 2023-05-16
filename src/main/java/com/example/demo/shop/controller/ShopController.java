@@ -5,7 +5,7 @@ import com.example.demo.shop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -132,6 +132,7 @@ public class ShopController{
     }
 
     // GetMapping, PostMapping, PutMapping, DeleteMapping.
+
     @GetMapping("/order")
     public List<Orders> getallorders(){
         return ordersRepository.findAll();
@@ -161,6 +162,13 @@ public class ShopController{
         return ordersRepository.save(ordersToUpdate);
     }
 
+    @PutMapping("/order/{id}/{status}")
+    public Orders updateOrderStatus(@PathVariable String id, @PathVariable String status){
+        Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
+        ordersToUpdate.setOrderStatus(OrderStatus.Processing);
+        return ordersRepository.save(ordersToUpdate);
+    }
+
     @DeleteMapping("/order/{id}")
     public void deleteorders(@PathVariable String id) {
         Orders orders = ordersRepository.findById(id).orElseThrow();
@@ -168,11 +176,26 @@ public class ShopController{
     }
 
     // GetMapping, PostMapping, PutMapping, DeleteMapping.
+
     @GetMapping("/products")
     public List<Product> getallproduct(){
         return productRepository.findAll();
     }
 
+    //write Controller/Service/Repository to find products by category.
+
+    //Excample:
+
+    @GetMapping("/products/{categoryName}")
+    public List<Product> getproductsByCategory(@PathVariable String categoryName){
+        return productRepository.findAllByCategoryName(categoryName);
+    }
+    @‌GetMapping("/products/{categoryName}/შეკვეთილი")
+    public List<Product> getOrderedProductsByCategory(@PathVariable String categoryName){
+        Category category = categoryRepository.findByName(categoryName);
+        List<OrderDetails> details = orderDetailsRepository.findAllByProductCategory(category);
+        return details.stream().map(d()→ d.getProduct()).toList(…);
+    }
     @GetMapping("/product/{id}")
     public Product getProduct(@PathVariable String id) {
         return productRepository.findById(id).orElseThrow();
