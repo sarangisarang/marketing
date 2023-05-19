@@ -6,4 +6,6 @@ insert into Orders (id,order_No,order_Date,order_Total,shipping_Date,is_Delivere
 insert into Product(id,product_Name,product_Desc,image1,image2,image3,Prece,Stock,Category_id) values ('1','cigni','arvici','dushqu1','dushqu2','dushqu3',40,200,'1');
 insert into Product(id,product_Name,product_Desc,image1,image2,image3,Prece,Stock,Category_id) values ('2','Apple','MacBook16','dushqu1','dushqu2','dushqu3',2000,100,'2');
 insert into Product(id,product_Name,product_Desc,image1,image2,image3,Prece,Stock,Category_id) values ('3','Apple','MacBook13','dushqu1','dushqu2','dushqu3',1000,100,'2');
-insert into Order_Details (id,Qty,Price,Subtotal,Order_id,Product_id) values ('1','arvici',20,40,'1','1');
+insert into Order_Details (id,Qty,Price,Subtotal,Order_id,Product_id) values ('1','1',20,40,'1','1');
+insert into Order_Details (id,Qty,Price,Subtotal,Order_id,Product_id) values ('2','2',2000,2000,'1','2');
+insert into Order_Details (id,Qty,Price,Subtotal,Order_id,Product_id) values ('3','2',1000,1000,'1','3');

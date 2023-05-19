@@ -190,11 +190,11 @@ public class ShopController{
     public List<Product> getproductsByCategory(@PathVariable String categoryName){
         return productRepository.findAllByCategoryName(categoryName);
     }
-    @‌GetMapping("/products/{categoryName}/შეკვეთილი")
+    @GetMapping("/products/{categoryName}/შეკვეთილი")
     public List<Product> getOrderedProductsByCategory(@PathVariable String categoryName){
         Category category = categoryRepository.findByName(categoryName);
         List<OrderDetails> details = orderDetailsRepository.findAllByProductCategory(category);
-        return details.stream().map(d()→ d.getProduct()).toList(…);
+        return details.stream().map(d -> d.getProduct()).toList();
     }
     @GetMapping("/product/{id}")
     public Product getProduct(@PathVariable String id) {
