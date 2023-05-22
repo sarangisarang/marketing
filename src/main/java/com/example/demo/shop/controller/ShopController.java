@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.UUID;
 
@@ -192,6 +193,17 @@ public class ShopController{
         Category category = categoryRepository.findByName(categoryName);
         List<OrderDetails> details = orderDetailsRepository.findAllByProductCategory(category);
         return details.stream().map(d -> d.getProduct()).toList();
+    }
+
+    @GetMapping("/products/შეკვეთილი")
+    public BigInteger getTotalOrderedAmount() {
+        BigInteger amount = BigInteger.ZERO;
+        List<OrderDetails> details = orderDetailsRepository.findAll();
+        List<Product> products = details.stream().map(d -> d.getProduct()).toList();
+        for (Product product : products) {
+            amount = product.getPrece().add(amount);
+        }
+        return amount;
     }
 
     @GetMapping("/product/{id}")
