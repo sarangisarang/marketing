@@ -12,7 +12,6 @@ public class Category {
     private String image;
     private String description;
 
-
     public String getId(){
         return id;
     }

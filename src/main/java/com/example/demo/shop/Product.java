@@ -54,8 +54,6 @@ public class Product {
         Stock = stock;
     }
 
-
-
     public String getId(){
         return id;
     }

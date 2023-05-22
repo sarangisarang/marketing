@@ -182,20 +182,18 @@ public class ShopController{
         return productRepository.findAll();
     }
 
-    //write Controller/Service/Repository to find products by category.
-
-    //Excample:
-
     @GetMapping("/products/{categoryName}")
     public List<Product> getproductsByCategory(@PathVariable String categoryName){
         return productRepository.findAllByCategoryName(categoryName);
     }
+
     @GetMapping("/products/{categoryName}/შეკვეთილი")
     public List<Product> getOrderedProductsByCategory(@PathVariable String categoryName){
         Category category = categoryRepository.findByName(categoryName);
         List<OrderDetails> details = orderDetailsRepository.findAllByProductCategory(category);
         return details.stream().map(d -> d.getProduct()).toList();
     }
+
     @GetMapping("/product/{id}")
     public Product getProduct(@PathVariable String id) {
         return productRepository.findById(id).orElseThrow();
