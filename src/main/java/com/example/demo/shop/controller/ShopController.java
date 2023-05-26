@@ -1,7 +1,11 @@
 package com.example.demo.shop.controller;
 
 import com.example.demo.shop.*;
-import com.example.demo.shop.service.*;
+import com.example.demo.shop.repository.*;
+import com.example.demo.shop.service.CategoryService;
+import com.example.demo.shop.service.CustomerService;
+import com.example.demo.shop.service.OrderService;
+import com.example.demo.shop.service.OrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +27,12 @@ public class ShopController{
     private CategoryRepository categoryRepository;
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private OrderService orderService;
+    @Autowired
+    private CategoryService categoryService;
+    @Autowired
+    private CustomerService customerService;
 
     //GetMapping, PostMapping, PutMapping, DeleteMapping.
 
@@ -42,19 +52,15 @@ public class ShopController{
         return categoryRepository.save(category);
     }
 
-    @PutMapping("/category/{id}")
+    @PutMapping("/category/{id}") // I made this funcion with CategoryService (all is ok!)
     public Category updateCategory(@RequestBody Category category, @PathVariable String id){
-        Category categoryToUpdate = categoryRepository.findById(id).orElseThrow();
-        categoryToUpdate.setName(category.getName());
-        categoryToUpdate.setDescription(category.getDescription());
-        categoryToUpdate.setImage(category.getImage());
-        return categoryRepository.save(categoryToUpdate);
+        return categoryService.CreateCategoryOrder(category,id);
     }
 
     @DeleteMapping("/category/{id}")
-    public void deleteCategory(@PathVariable String id) {
-        Category category = categoryRepository.findById(id).orElseThrow();
-        categoryRepository.delete(category);
+        public void deleteCategory(@PathVariable String id){
+            Category category = categoryRepository.findById(id).orElseThrow();
+            categoryRepository.delete(category);
     }
 
     //GetMapping, GetMappig(add Id), PostMapping, PutMapping, DeleteMapping.
@@ -75,18 +81,9 @@ public class ShopController{
         return customerRepository.save(customer);
     }
 
-    @PutMapping("/customer/{id}")
+    @PutMapping("/customer/{id}")  // Start
     public Customer updateCustomer(@RequestBody Customer customer, @PathVariable String id){
-        Customer customerToUpdate = customerRepository.findById(id).orElseThrow();
-        customerToUpdate.setLastName(customer.getLastName());
-        customerToUpdate.setFirstName(customer.getFirstName());
-        customerToUpdate.setEmail(customer.getEmail());
-        customerToUpdate.setPassword(customer.getPassword());
-        customerToUpdate.setAddress(customer.getAddress());
-        customerToUpdate.setPostcode(customer.getPostcode());
-        customerToUpdate.setCity(customer.getCity());
-        customerToUpdate.setPhone(customer.getPhone());
-        return customerRepository.save(customerToUpdate);
+        return customerService.CreateCustomerOrder(customer,id);
     }
 
     @DeleteMapping("/customer/{id}")
@@ -188,22 +185,16 @@ public class ShopController{
         return productRepository.findAllByCategoryName(categoryName);
     }
 
-    @GetMapping("/products/{categoryName}/შეკვეთილი")
+    @GetMapping("/products/{categoryName}/Ordered")
     public List<Product> getOrderedProductsByCategory(@PathVariable String categoryName){
         Category category = categoryRepository.findByName(categoryName);
         List<OrderDetails> details = orderDetailsRepository.findAllByProductCategory(category);
         return details.stream().map(d -> d.getProduct()).toList();
     }
 
-    @GetMapping("/products/შეკვეთილი")
+    @GetMapping("/products/OrderedAllPrace")
     public BigInteger getTotalOrderedAmount() {
-        BigInteger amount = BigInteger.ZERO;
-        List<OrderDetails> details = orderDetailsRepository.findAll();
-        List<Product> products = details.stream().map(d -> d.getProduct()).toList();
-        for (Product product : products) {
-            amount = product.getPrece().add(amount);
-        }
-        return amount;
+        return orderService.getTotalOrderedAmount();
     }
 
     @GetMapping("/product/{id}")
