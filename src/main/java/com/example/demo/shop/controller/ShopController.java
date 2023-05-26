@@ -1,7 +1,10 @@
 package com.example.demo.shop.controller;
 
 import com.example.demo.shop.*;
-import com.example.demo.shop.service.*;
+import com.example.demo.shop.repository.*;
+import com.example.demo.shop.service.CategoryService;
+import com.example.demo.shop.service.OrderService;
+import com.example.demo.shop.service.OrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +27,12 @@ public class ShopController{
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private OrderService orderService;
+
+    @Autowired
+    private CategoryService categoryService;
+
     //GetMapping, PostMapping, PutMapping, DeleteMapping.
 
     @GetMapping("/categories")
@@ -42,13 +51,9 @@ public class ShopController{
         return categoryRepository.save(category);
     }
 
-    @PutMapping("/category/{id}")
+    @PutMapping("/category/{id}") // I made this funcion with CategoryService (all is ok!)
     public Category updateCategory(@RequestBody Category category, @PathVariable String id){
-        Category categoryToUpdate = categoryRepository.findById(id).orElseThrow();
-        categoryToUpdate.setName(category.getName());
-        categoryToUpdate.setDescription(category.getDescription());
-        categoryToUpdate.setImage(category.getImage());
-        return categoryRepository.save(categoryToUpdate);
+        return categoryService.CreateCategoryOrder(category,id);
     }
 
     @DeleteMapping("/category/{id}")
@@ -188,22 +193,16 @@ public class ShopController{
         return productRepository.findAllByCategoryName(categoryName);
     }
 
-    @GetMapping("/products/{categoryName}/შეკვეთილი")
+    @GetMapping("/products/{categoryName}/Ordered")
     public List<Product> getOrderedProductsByCategory(@PathVariable String categoryName){
         Category category = categoryRepository.findByName(categoryName);
         List<OrderDetails> details = orderDetailsRepository.findAllByProductCategory(category);
         return details.stream().map(d -> d.getProduct()).toList();
     }
 
-    @GetMapping("/products/შეკვეთილი")
+    @GetMapping("/products/OrderedAllPrace")
     public BigInteger getTotalOrderedAmount() {
-        BigInteger amount = BigInteger.ZERO;
-        List<OrderDetails> details = orderDetailsRepository.findAll();
-        List<Product> products = details.stream().map(d -> d.getProduct()).toList();
-        for (Product product : products) {
-            amount = product.getPrece().add(amount);
-        }
-        return amount;
+        return orderService.getTotalOrderedAmount();
     }
 
     @GetMapping("/product/{id}")

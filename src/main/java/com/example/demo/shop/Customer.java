@@ -16,7 +16,6 @@ public class Customer {
     private String City;
     private Integer Phone;
 
-
     public String getId(){
         return id;
     }
