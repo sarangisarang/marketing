@@ -100,14 +100,9 @@ public class ShopController{
         return orderDetailsRepository.findAll();
     }
 
-    @PostMapping("/orderdetail/{orderId}/{productId}")
+    @PostMapping("/orderdetail/{orderId}/{productId}") // this is work! Tested all ok!
     public OrderDetails saveorderdetails(@RequestBody OrderDetails orderDetails,@PathVariable String orderId, @PathVariable String productId){
-        orderDetails.setId(UUID.randomUUID().toString());
-        Orders orders = ordersRepository.findById(orderId).orElseThrow();
-        Product product = productRepository.findById(productId).orElseThrow();
-        orderDetails.setOrders(orders);
-        orderDetails.setProduct(product);
-        return orderDetailsRepository.save(orderDetails);
+        return orderDetailsService.createorderdetals(orderDetails,orderId,productId);
     }
 
     @GetMapping("/orderdetail/{id}")
