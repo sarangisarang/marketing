@@ -53,7 +53,7 @@ public class ShopController{
         return categoryRepository.save(category);
     }
 
-    @PutMapping("/category/{id}") // This is tested, working.
+    @PutMapping("/category/{id}") // This is tested, works.
     public Category updateCategory(@RequestBody Category category, @PathVariable String id){
         return categoryService.CreateCategoryOrder(category,id);
     }
@@ -82,7 +82,7 @@ public class ShopController{
         return customerRepository.save(customer);
     }
 
-    @PutMapping("/customer/{id}") // this is working, Tested all ok!
+    @PutMapping("/customer/{id}") // this is works, Tested all ok!
     public Customer updateCustomer(@RequestBody Customer customer, @PathVariable String id){
         return customerService.CreateCustomerOrder(customer,id);
     }
@@ -110,13 +110,9 @@ public class ShopController{
         return orderDetailsRepository.findById(id).orElseThrow();
     }
 
-    @PutMapping("/orderdetail/{id}")
+    @PutMapping("/orderdetail/{id}") // This is works, tested all ok!
     public OrderDetails updateCustomer(@RequestBody OrderDetails orderDetails, @PathVariable String id){
-        OrderDetails orderDetailsToUpdate = orderDetailsRepository.findById(id).orElseThrow();
-        orderDetailsToUpdate.setQty(orderDetails.getQty());
-        orderDetailsToUpdate.setPrice(orderDetails.getPrice());
-        orderDetailsToUpdate.setSubtotal(orderDetails.getSubtotal());
-        return orderDetailsRepository.save(orderDetailsToUpdate);
+        return orderDetailsService.creatupdetecustomer(orderDetails,id);
     }
 
     @DeleteMapping("/orderdetails/{id}")
@@ -137,12 +133,9 @@ public class ShopController{
         return ordersRepository.findById(id).orElseThrow();
     }
 
-    @PostMapping("/order/{CustumerId}")
+    @PostMapping("/order/{CustumerId}") // This is works, all is ok!
     public Orders saveorders(@RequestBody Orders orders, @PathVariable String CustumerId){
-        orders.setId(UUID.randomUUID().toString());
-        Customer customer = customerRepository.findById(CustumerId).orElseThrow();
-        orders.setCustomer(customer);
-        return ordersRepository.save(orders);
+        return orderService.createsaveorders(orders,CustumerId);
     }
 
     @PutMapping("/order/{id}")
