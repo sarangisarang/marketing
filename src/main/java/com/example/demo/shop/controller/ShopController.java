@@ -1,12 +1,9 @@
 package com.example.demo.shop.controller;
-
 import com.example.demo.shop.*;
 import com.example.demo.shop.repository.*;
 import com.example.demo.shop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-
 import java.math.BigInteger;
 import java.util.List;
 import java.util.UUID;
@@ -166,7 +163,7 @@ public class ShopController{
         return productRepository.findAllByCategoryName(categoryName);
     }
 
-    @GetMapping("/products/{categoryName}/ordered") // start work here
+    @GetMapping("/products/{categoryName}/ordered") // Tested This works, all is ok!!
     public List<Product> getOrderedProductsByCategory(@PathVariable String categoryName) {
         return productService.creategetOrderedProductsByCategory(categoryName);
     }
@@ -181,25 +178,14 @@ public class ShopController{
         return productRepository.findById(id).orElseThrow();
     }
 
-    @PostMapping("/product/{categoryId}")
+    @PostMapping("/product/{categoryId}") // Tested all this work!
     public Product saveProduct(@RequestBody Product product, @PathVariable String categoryId){
-        product.setId(UUID.randomUUID().toString());
-        Category category = categoryRepository.findById(categoryId).orElseThrow();
-        product.setCategory(category);
-        return productRepository.save(product);
+        return productService.createsaveProduct(product,categoryId);
     }
 
-    @PutMapping("/product/{id}")
+    @PutMapping("/product/{id}")  // Tested all this works!
     public Product updateProucts(@RequestBody Product product, @PathVariable String id){
-        Product productsToUpdate = productRepository.findById(id).orElseThrow();
-        productsToUpdate.setProductName(product.getProductName());
-        productsToUpdate.setProductDesc(product.getProductDesc());
-        productsToUpdate.setImage1(product.getImage1());
-        productsToUpdate.setImage2(product.getImage2());
-        productsToUpdate.setImage3(product.getImage3());
-        productsToUpdate.setPrece(product.getPrece());
-        productsToUpdate.setStock(product.getStock());
-        return productRepository.save(productsToUpdate);
+        return productService.createupdateProucts(product,id);
     }
 
     @DeleteMapping("/product/{id}")
