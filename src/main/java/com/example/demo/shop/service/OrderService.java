@@ -4,12 +4,10 @@ import com.example.demo.shop.Customer;
 import com.example.demo.shop.OrderDetails;
 import com.example.demo.shop.Orders;
 import com.example.demo.shop.Product;
-import com.example.demo.shop.repository.CategoryRepository;
 import com.example.demo.shop.repository.CustomerRepository;
 import com.example.demo.shop.repository.OrderDetailsRepository;
 import com.example.demo.shop.repository.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +20,9 @@ import java.util.UUID;
 public class OrderService {
     @Autowired
     private OrderDetailsRepository orderDetailsRepository;
+    @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
     private OrdersRepository ordersRepository;
 
     public BigInteger getTotalOrderedAmount() {
@@ -51,9 +51,9 @@ public class OrderService {
         ordersToUpdate.setIsDelivered(orders.getIsDelivered());
         return ordersRepository.save(ordersToUpdate);
     }
-    public Orders crateupdateOrderStatus(@PathVariable String id, @PathVariable String status){
+    public Orders updateorderstatus(@PathVariable String id, @PathVariable String status){
         Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
-        ordersToUpdate.setOrderStatus(OrderStatus.shipped);
+        ordersToUpdate.setOrderStatus(OrderStatus.valueOf(status));
         return ordersRepository.save(ordersToUpdate);
     }
 }

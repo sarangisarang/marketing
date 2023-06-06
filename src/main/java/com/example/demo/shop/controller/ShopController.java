@@ -118,6 +118,14 @@ public class ShopController{
         orderDetailsRepository.delete(orderDetails);
     }
 
+    @DeleteMapping("/orderdetails/{id}/relacion") // here i am blocked
+    public void deleterelacion(@PathVariable String id){
+        OrderDetails relacia = orderDetailsRepository.findById(id).orElseThrow();
+        relacia.setOrders(relacia.getOrders());
+        relacia.setProduct(relacia.getProduct());
+        orderDetailsRepository.delete(relacia);
+    }
+
     // GetMapping, PostMapping, PutMapping, DeleteMapping.
 
     @GetMapping("/order")
@@ -140,16 +148,17 @@ public class ShopController{
         return orderService.createupdateCustomer(orders,id);
     }
 
-    @PutMapping("/order/{id}/{status}") // Here status can not call funcion.
+    @PutMapping("/order/{id}/{status}") // Test this all ok!.
     public Orders updateOrderStatus(@PathVariable String id, @PathVariable String status){
-        return orderService.crateupdateOrderStatus(id,status);
+        return orderService.updateorderstatus(id,status);
     }
 
-    @DeleteMapping("/order/{id}")
+    @DeleteMapping("/order/{id}") // this is problem!
     public void deleteorders(@PathVariable String id) {
         Orders orders = ordersRepository.findById(id).orElseThrow();
         ordersRepository.delete(orders);
     }
+
 
     // GetMapping, PostMapping, PutMapping, DeleteMapping.
 
