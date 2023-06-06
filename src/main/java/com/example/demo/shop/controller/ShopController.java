@@ -148,9 +148,19 @@ public class ShopController{
         return orderService.createupdateCustomer(orders,id);
     }
 
-    @PutMapping("/order/{id}/{status}") // Test this all ok!.
-    public Orders updateOrderStatus(@PathVariable String id, @PathVariable String status){
-        return orderService.updateorderstatus(id,status);
+    @PutMapping("/order/{id}/process") // Test this all ok!.
+    public Orders updateOrderstatusprocess(@PathVariable String id){
+        return orderService.updateorderstatusprocess(id);
+    }
+
+    @PutMapping("/order/{id}/schip") // Test this all ok!.
+    public Orders updateOrderstatusschip(@PathVariable String id){
+        return orderService.updateorderstatusschip(id);
+    }
+
+    @PutMapping("/order/{id}/close") // Test this all ok!.
+    public Orders updateOrderstatusclose(@PathVariable String id){
+        return orderService.updateorderstatusclose(id);
     }
 
     @DeleteMapping("/order/{id}") // this is problem!
@@ -158,7 +168,6 @@ public class ShopController{
         Orders orders = ordersRepository.findById(id).orElseThrow();
         ordersRepository.delete(orders);
     }
-
 
     // GetMapping, PostMapping, PutMapping, DeleteMapping.
 

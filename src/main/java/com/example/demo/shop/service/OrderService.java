@@ -51,9 +51,22 @@ public class OrderService {
         ordersToUpdate.setIsDelivered(orders.getIsDelivered());
         return ordersRepository.save(ordersToUpdate);
     }
-    public Orders updateorderstatus(@PathVariable String id, @PathVariable String status){
+
+    public Orders updateorderstatusprocess(@PathVariable String id){
         Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
-        ordersToUpdate.setOrderStatus(OrderStatus.valueOf(status));
+        ordersToUpdate.setOrderStatus(OrderStatus.Processing);
+        return ordersRepository.save(ordersToUpdate);
+    }
+
+    public Orders updateorderstatusschip(@PathVariable String id){
+        Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
+        ordersToUpdate.setOrderStatus(OrderStatus.shipped);
+        return ordersRepository.save(ordersToUpdate);
+    }
+
+    public Orders updateorderstatusclose(@PathVariable String id){
+        Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
+        ordersToUpdate.setOrderStatus(OrderStatus.closed);
         return ordersRepository.save(ordersToUpdate);
     }
 }
