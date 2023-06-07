@@ -34,14 +34,14 @@ public class OrderService {
         return amount;
     }
 
-    public Orders createSaveOrders(@RequestBody Orders orders,String CustumerId) {
+    public Orders createSaveOrders(@RequestBody Orders orders, String CustumerId) {
         orders.setId(UUID.randomUUID().toString());
         Customer customer = customerRepository.findById(CustumerId).orElseThrow();
         orders.setCustomer(customer);
         return ordersRepository.save(orders);
     }
 
-    public Orders createUpdateCustomer(@RequestBody Orders orders,String id) {
+    public Orders createUpdateCustomer(@RequestBody Orders orders, String id) {
         Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
         ordersToUpdate.setOrderNo(orders.getOrderNo());
         ordersToUpdate.setOrderDate(orders.getOrderDate());
@@ -51,21 +51,32 @@ public class OrderService {
         return ordersRepository.save(ordersToUpdate);
     }
 
-    public Orders updateOrderStatusProcess(String id){
+    public Orders updateOrderStatusProcess(String id) {
         Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
         ordersToUpdate.setOrderStatus(OrderStatus.Processing);
         return ordersRepository.save(ordersToUpdate);
     }
 
-    public Orders updateOrderStatusSchip(String id){
+    public Orders updateOrderStatusSchip(String id) {
         Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
-        ordersToUpdate.setOrderStatus(OrderStatus.shipped);
+        if (ordersToUpdate.getOrderStatus() == OrderStatus.Pending) {
+            ordersToUpdate.setOrderStatus(OrderStatus.shipped);
+            ordersRepository.save(ordersToUpdate);
+        } else {
+            System.out.println("Not allowed to ship a Pending order");
+        }
         return ordersRepository.save(ordersToUpdate);
     }
+
 
     public Orders updateOrderStatusClose(String id){
         Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
         ordersToUpdate.setOrderStatus(OrderStatus.closed);
+        return ordersRepository.save(ordersToUpdate);
+    }
+    public Orders updateOrderStatusPending(String id){
+        Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
+        ordersToUpdate.setOrderStatus(OrderStatus.Pending);
         return ordersRepository.save(ordersToUpdate);
     }
 }

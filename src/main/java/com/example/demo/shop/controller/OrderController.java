@@ -85,6 +85,11 @@ public class OrderController {
         return orderService.updateOrderStatusClose(id);
     }
 
+    @PutMapping("/order/{id}/pending") // Test this all ok!.
+    public Orders updateOrderStatusPending(@PathVariable String id){
+        return orderService.updateOrderStatusPending(id);
+    }
+
     @DeleteMapping("/order/{id}") // this is problem!
     public void deleteOrders(@PathVariable String id) {
         Orders orders = ordersRepository.findById(id).orElseThrow();
