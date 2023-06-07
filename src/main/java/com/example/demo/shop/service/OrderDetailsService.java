@@ -21,7 +21,7 @@ public class OrderDetailsService {
     @Autowired
     private ProductRepository productRepository;
 
-    public OrderDetails createOrderDetails(OrderDetails orderDetails,String orderId,String productId) {
+    public OrderDetails createOrderDetails(OrderDetails orderDetails, String orderId, String productId) {
         orderDetails.setId(UUID.randomUUID().toString());
         Orders orders = ordersRepository.findById(orderId).orElseThrow();
         Product product = productRepository.findById(productId).orElseThrow();
@@ -30,11 +30,17 @@ public class OrderDetailsService {
         return orderDetailsRepository.save(orderDetails);
     }
 
-    public OrderDetails createUpdeteCustomer(@RequestBody OrderDetails orderDetails,String id) {
+    public OrderDetails UpdeteOrderDetails(OrderDetails orderDetails, Orders orders, String id) {
         OrderDetails orderDetailsToUpdate = orderDetailsRepository.findById(id).orElseThrow();
-        orderDetailsToUpdate.setQty(orderDetails.getQty());
-        orderDetailsToUpdate.setPrice(orderDetails.getPrice());
-        orderDetailsToUpdate.setSubtotal(orderDetails.getSubtotal());
+        Orders ordersstatus = ordersRepository.findById(orders.getId()).orElseThrow();
+        if (ordersstatus.getOrderStatus() == OrderStatus.Pending) {
+            orderDetailsToUpdate.setQty(orderDetails.getQty());
+            orderDetailsToUpdate.setPrice(orderDetails.getPrice());
+            orderDetailsToUpdate.setSubtotal(orderDetails.getSubtotal());
+            orderDetailsRepository.save(orderDetailsToUpdate);
+        } else {
+            System.out.println("update/delete OrderDetails only from Pending Order");
+        }
         return orderDetailsRepository.save(orderDetailsToUpdate);
     }
 }

@@ -38,8 +38,8 @@ public class OrderController {
     }
 
     @PutMapping("/orderdetail/{id}") // This is works, tested all ok!
-    public OrderDetails updateCustomer(@RequestBody OrderDetails orderDetails, @PathVariable String id){
-        return orderDetailsService.createUpdeteCustomer(orderDetails,id);
+    public OrderDetails updateOrderdetails(@RequestBody OrderDetails orderDetails, Orders orders, @PathVariable String id){
+        return orderDetailsService.UpdeteOrderDetails(orderDetails,orders,id);
     }
 
     @DeleteMapping("/orderdetails/{id}")
