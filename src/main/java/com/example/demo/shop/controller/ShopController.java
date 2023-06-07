@@ -45,7 +45,7 @@ public class ShopController{
     }
 
     @PostMapping("/category")
-    public Category saveorders(@RequestBody Category category){
+    public Category saveOrders(@RequestBody Category category){
         category.setId(UUID.randomUUID().toString());
         return categoryRepository.save(category);
     }
@@ -69,12 +69,12 @@ public class ShopController{
     }
 
     @GetMapping("/customer/{id}")
-    public Customer getCustumer(@PathVariable String id) {
+    public Customer getCustomer(@PathVariable String id) {
         return customerRepository.findById(id).orElseThrow();
     }
 
     @PostMapping("/customer")
-    public Customer saveCustumer(@RequestBody Customer customer){
+    public Customer saveCustomer(@RequestBody Customer customer){
         customer.setId(UUID.randomUUID().toString());
         return customerRepository.save(customer);
     }
@@ -85,99 +85,20 @@ public class ShopController{
     }
 
     @DeleteMapping("/customer/{id}")
-    public void deletecustomer(@PathVariable String id) {
+    public void deleteCustomer(@PathVariable String id) {
         Customer customer = customerRepository.findById(id).orElseThrow();
         customerRepository.delete(customer);
     }
 
     // GetMapping, PostMapping, PutMapping, DeleteMapping.
 
-    @GetMapping("/orderdetails")
-    public  List<OrderDetails> getallOrderDetails(){
-        return orderDetailsRepository.findAll();
-    }
-
-    @PostMapping("/orderdetail/{orderId}/{productId}") // this is work! Tested all ok!
-    public OrderDetails saveorderdetails(@RequestBody OrderDetails orderDetails,@PathVariable String orderId, @PathVariable String productId){
-        return orderDetailsService.createorderdetals(orderDetails,orderId,productId);
-    }
-
-    @GetMapping("/orderdetail/{id}")
-    public OrderDetails getOrderDetails(@PathVariable String id) {
-        return orderDetailsRepository.findById(id).orElseThrow();
-    }
-
-    @PutMapping("/orderdetail/{id}") // This is works, tested all ok!
-    public OrderDetails updateCustomer(@RequestBody OrderDetails orderDetails, @PathVariable String id){
-        return orderDetailsService.creatupdetecustomer(orderDetails,id);
-    }
-
-    @DeleteMapping("/orderdetails/{id}")
-    public void deleteorderdetails(@PathVariable String id) {
-        OrderDetails orderDetails = orderDetailsRepository.findById(id).orElseThrow();
-        orderDetailsRepository.delete(orderDetails);
-    }
-
-    @DeleteMapping("/orderdetails/{id}/relacion") // here i am blocked
-    public void deleterelacion(@PathVariable String id){
-        OrderDetails relacia = orderDetailsRepository.findById(id).orElseThrow();
-        relacia.setOrders(relacia.getOrders());
-        relacia.setProduct(relacia.getProduct());
-        orderDetailsRepository.delete(relacia);
-    }
-
-    // GetMapping, PostMapping, PutMapping, DeleteMapping.
-
-    @GetMapping("/order")
-    public List<Orders> getallorders(){
-        return ordersRepository.findAll();
-    }
-
-    @GetMapping("/order/{id}")
-    public Orders getOrder(@PathVariable String id) {
-        return ordersRepository.findById(id).orElseThrow();
-    }
-
-    @PostMapping("/order/{CustumerId}") // This is works, all is ok!
-    public Orders saveorders(@RequestBody Orders orders, @PathVariable String CustumerId){
-        return orderService.createsaveorders(orders,CustumerId);
-    }
-
-    @PutMapping("/order/{id}") // This is works, all is ok!
-    public Orders updateCustomer(@RequestBody Orders orders, @PathVariable String id){
-        return orderService.createupdateCustomer(orders,id);
-    }
-
-    @PutMapping("/order/{id}/process") // Test this all ok!.
-    public Orders updateOrderstatusprocess(@PathVariable String id){
-        return orderService.updateorderstatusprocess(id);
-    }
-
-    @PutMapping("/order/{id}/schip") // Test this all ok!.
-    public Orders updateOrderstatusschip(@PathVariable String id){
-        return orderService.updateorderstatusschip(id);
-    }
-
-    @PutMapping("/order/{id}/close") // Test this all ok!.
-    public Orders updateOrderstatusclose(@PathVariable String id){
-        return orderService.updateorderstatusclose(id);
-    }
-
-    @DeleteMapping("/order/{id}") // this is problem!
-    public void deleteorders(@PathVariable String id) {
-        Orders orders = ordersRepository.findById(id).orElseThrow();
-        ordersRepository.delete(orders);
-    }
-
-    // GetMapping, PostMapping, PutMapping, DeleteMapping.
-
     @GetMapping("/products")
-    public List<Product> getallproduct(){
+    public List<Product> getAllProduct(){
         return productRepository.findAll();
     }
 
     @GetMapping("/products/{categoryName}")
-    public List<Product> getproductsByCategory(@PathVariable String categoryName){
+    public List<Product> getProductsByCategory(@PathVariable String categoryName){
         return productRepository.findAllByCategoryName(categoryName);
     }
 
@@ -198,16 +119,16 @@ public class ShopController{
 
     @PostMapping("/product/{categoryId}") // Tested all this work!
     public Product saveProduct(@RequestBody Product product, @PathVariable String categoryId){
-        return productService.createsaveProduct(product,categoryId);
+        return productService.createSaveProduct(product,categoryId);
     }
 
     @PutMapping("/product/{id}")  // Tested all this works!
     public Product updateProucts(@RequestBody Product product, @PathVariable String id){
-        return productService.createupdateProucts(product,id);
+        return productService.createUpdateProucts(product,id);
     }
 
     @DeleteMapping("/product/{id}")
-    public void deleteproducts(@PathVariable String id) {
+    public void deleteProducts(@PathVariable String id) {
         Product product = productRepository.findById(id).orElseThrow();
         productRepository.delete(product);
 

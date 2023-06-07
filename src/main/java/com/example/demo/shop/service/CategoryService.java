@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class CategoryService {
     @Autowired
-    private CategoryRepository categoryRepositorydetails;
+    private CategoryRepository categoryRepositoryDetails;
     public Category CreateCategoryOrder(Category category, String id){
-        Category categoryToUpdate = categoryRepositorydetails.findById(id).orElseThrow();
+        Category categoryToUpdate = categoryRepositoryDetails.findById(id).orElseThrow();
         categoryToUpdate.setName(category.getName());
         categoryToUpdate.setDescription(category.getDescription());
         categoryToUpdate.setImage(category.getImage());
-        return categoryRepositorydetails.save(categoryToUpdate);
+        return categoryRepositoryDetails.save(categoryToUpdate);
     }
 }

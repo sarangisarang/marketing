@@ -9,7 +9,6 @@ import com.example.demo.shop.repository.OrderDetailsRepository;
 import com.example.demo.shop.repository.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.math.BigInteger;
@@ -35,14 +34,14 @@ public class OrderService {
         return amount;
     }
 
-    public Orders createsaveorders(@RequestBody Orders orders, @PathVariable String CustumerId) {
+    public Orders createSaveOrders(@RequestBody Orders orders,String CustumerId) {
         orders.setId(UUID.randomUUID().toString());
         Customer customer = customerRepository.findById(CustumerId).orElseThrow();
         orders.setCustomer(customer);
         return ordersRepository.save(orders);
     }
 
-    public Orders createupdateCustomer(@RequestBody Orders orders, @PathVariable String id) {
+    public Orders createUpdateCustomer(@RequestBody Orders orders,String id) {
         Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
         ordersToUpdate.setOrderNo(orders.getOrderNo());
         ordersToUpdate.setOrderDate(orders.getOrderDate());
@@ -52,19 +51,19 @@ public class OrderService {
         return ordersRepository.save(ordersToUpdate);
     }
 
-    public Orders updateorderstatusprocess(@PathVariable String id){
+    public Orders updateOrderStatusProcess(String id){
         Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
         ordersToUpdate.setOrderStatus(OrderStatus.Processing);
         return ordersRepository.save(ordersToUpdate);
     }
 
-    public Orders updateorderstatusschip(@PathVariable String id){
+    public Orders updateOrderStatusSchip(String id){
         Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
         ordersToUpdate.setOrderStatus(OrderStatus.shipped);
         return ordersRepository.save(ordersToUpdate);
     }
 
-    public Orders updateorderstatusclose(@PathVariable String id){
+    public Orders updateOrderStatusClose(String id){
         Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
         ordersToUpdate.setOrderStatus(OrderStatus.closed);
         return ordersRepository.save(ordersToUpdate);

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-
 import java.util.UUID;
 
 @Service
@@ -22,7 +21,7 @@ public class OrderDetailsService {
     @Autowired
     private ProductRepository productRepository;
 
-    public OrderDetails createorderdetals(OrderDetails orderDetails, @PathVariable String orderId, @PathVariable String productId) {
+    public OrderDetails createOrderDetails(OrderDetails orderDetails,String orderId,String productId) {
         orderDetails.setId(UUID.randomUUID().toString());
         Orders orders = ordersRepository.findById(orderId).orElseThrow();
         Product product = productRepository.findById(productId).orElseThrow();
@@ -31,7 +30,7 @@ public class OrderDetailsService {
         return orderDetailsRepository.save(orderDetails);
     }
 
-    public OrderDetails creatupdetecustomer(@RequestBody OrderDetails orderDetails, @PathVariable String id) {
+    public OrderDetails createUpdeteCustomer(@RequestBody OrderDetails orderDetails,String id) {
         OrderDetails orderDetailsToUpdate = orderDetailsRepository.findById(id).orElseThrow();
         orderDetailsToUpdate.setQty(orderDetails.getQty());
         orderDetailsToUpdate.setPrice(orderDetails.getPrice());

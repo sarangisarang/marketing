@@ -1,11 +1,9 @@
 package com.example.demo.shop.service;
-
 import com.example.demo.shop.Category;
 import com.example.demo.shop.OrderDetails;
 import com.example.demo.shop.Product;
 import com.example.demo.shop.repository.CategoryRepository;
 import com.example.demo.shop.repository.OrderDetailsRepository;
-import com.example.demo.shop.repository.OrdersRepository;
 import com.example.demo.shop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,18 +21,19 @@ public class ProductService {
     private OrderDetailsRepository orderDetailsRepository;
     @Autowired
     private ProductRepository productRepository;
-    public List<Product> creategetOrderedProductsByCategory(@PathVariable String categoryName){
+
+    public List<Product> creategetOrderedProductsByCategory(String categoryName){
         Category category = categoryRepository.findByName(categoryName);
         List<OrderDetails> details = orderDetailsRepository.findAllByProductCategory(category);
         return details.stream().map(d -> d.getProduct()).toList();
     }
-    public Product createsaveProduct(@RequestBody Product product, @PathVariable String categoryId){
+    public Product createSaveProduct(@RequestBody Product product, String categoryId){
         product.setId(UUID.randomUUID().toString());
         Category category = categoryRepository.findById(categoryId).orElseThrow();
         product.setCategory(category);
         return productRepository.save(product);
     }
-    public Product createupdateProucts(@RequestBody Product product, @PathVariable String id){
+    public Product createUpdateProucts(@RequestBody Product product,String id){
         Product productsToUpdate = productRepository.findById(id).orElseThrow();
         productsToUpdate.setProductName(product.getProductName());
         productsToUpdate.setProductDesc(product.getProductDesc());
