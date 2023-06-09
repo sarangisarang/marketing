@@ -29,13 +29,13 @@ public class OrderDetailsService {
     }
 
     public OrderDetails deleteOrderDetails(String id) {
-        OrderDetails orderDetailsdelete = orderDetailsRepository.findById(id).orElseThrow();
-        if (orderDetailsdelete.getOrders().getOrderStatus() == OrderStatus.Pending) {
-            orderDetailsRepository.delete(orderDetailsdelete);
+        OrderDetails orderDetailsDelete = orderDetailsRepository.findById(id).orElseThrow();
+        if (orderDetailsDelete.getOrders().getOrderStatus() == OrderStatus.Pending) {
+            orderDetailsRepository.delete(orderDetailsDelete);
         } else {
             System.out.println("Not allowed to ship a Pending order");
         }
-        return 
+        return
     }
 
 
