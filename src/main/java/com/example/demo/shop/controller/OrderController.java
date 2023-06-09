@@ -43,9 +43,8 @@ public class OrderController {
     }
 
     @DeleteMapping("/orderdetails/{id}")
-    public void deleteOrderDetails(@PathVariable String id) {
-        OrderDetails orderDetails = orderDetailsRepository.findById(id).orElseThrow();
-        orderDetailsRepository.delete(orderDetails);
+    public OrderDetails deleteOrderDetails(@PathVariable String id) {
+        return orderDetailsService.deleteOrderDetails(id);
     }
 
     // Order: GetMapping, PostMapping, PutMapping, DeleteMapping.

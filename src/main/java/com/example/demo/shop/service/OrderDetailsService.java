@@ -8,8 +8,6 @@ import com.example.demo.shop.repository.OrdersRepository;
 import com.example.demo.shop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import java.util.UUID;
 
 @Service
@@ -29,6 +27,17 @@ public class OrderDetailsService {
         orderDetails.setProduct(product);
         return orderDetailsRepository.save(orderDetails);
     }
+
+    public OrderDetails deleteOrderDetails(String id) {
+        OrderDetails orderDetailsdelete = orderDetailsRepository.findById(id).orElseThrow();
+        if (orderDetailsdelete.getOrders().getOrderStatus() == OrderStatus.Pending) {
+            orderDetailsRepository.delete(orderDetailsdelete);
+        } else {
+            System.out.println("Not allowed to ship a Pending order");
+        }
+        return 
+    }
+
 
     public OrderDetails UpdeteOrderDetails(OrderDetails orderDetails, Orders orders, String id) {
         OrderDetails orderDetailsToUpdate = orderDetailsRepository.findById(id).orElseThrow();
