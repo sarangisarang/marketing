@@ -28,14 +28,14 @@ public class OrderDetailsService {
         return orderDetailsRepository.save(orderDetails);
     }
 
-    public void deleteOrderDetails(String id) {
-        OrderDetails orderDetailsDelete = orderDetailsRepository.findById(id).orElseThrow();
-        if (orderDetailsDelete.getOrders().getOrderStatus() == OrderStatus.Pending) {
-            orderDetailsRepository.delete(orderDetailsDelete);
+    public OrderDetails deleteOrderDetails(String id) {
+        OrderDetails orderDetailsdelete = orderDetailsRepository.findById(id).orElseThrow();
+        if (orderDetailsdelete.getOrders().getOrderStatus() == OrderStatus.Pending) {
+            orderDetailsRepository.delete(orderDetailsdelete);
         } else {
             System.out.println("Not allowed to ship a Pending order");
         }
-       orderDetailsRepository.delete(orderDetailsDelete);
+        return 
     }
 
 
