@@ -38,8 +38,8 @@ public class OrderController {
     }
 
     @PutMapping("/orderdetail/{id}") // This is works, tested all ok!
-    public OrderDetails updateOrderdetails(@RequestBody OrderDetails orderDetails, Orders orders, @PathVariable String id){
-        return orderDetailsService.UpdeteOrderDetails(orderDetails,orders,id);
+    public void updateOrderdetails(@RequestBody OrderDetails orderDetails, Orders orders, @PathVariable String id){
+        orderDetailsService.UpdeteOrderDetails(orderDetails,orders,id);
     }
 
     @DeleteMapping("/orderdetails/{id}")
@@ -64,7 +64,7 @@ public class OrderController {
         return orderService.createSaveOrders(orders,CustumerId);
     }
 
-    @PutMapping("/order/{id}") // This is works, all is ok!
+    @PutMapping("/order/{id}") // This is works, all is ok!  have questions! updateCustomer??
     public Orders updateCustomer(@RequestBody Orders orders, @PathVariable String id){
         return orderService.createUpdateCustomer(orders,id);
     }
@@ -90,8 +90,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/order/{id}") // this is problem!
-    public void deleteOrders(@PathVariable String id) {
-        Orders orders = ordersRepository.findById(id).orElseThrow();
-        ordersRepository.delete(orders);
+    public void deleteOrderWithDetails(@PathVariable String id) throws Exception {
+      orderService.deleteOrderWithDetails(id);
     }
 }
