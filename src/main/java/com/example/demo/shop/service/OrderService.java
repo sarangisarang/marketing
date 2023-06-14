@@ -1,10 +1,8 @@
 package com.example.demo.shop.service;
-
 import com.example.demo.shop.Customer;
 import com.example.demo.shop.OrderDetails;
 import com.example.demo.shop.Orders;
 import com.example.demo.shop.Product;
-import com.example.demo.shop.controller.OrderController;
 import com.example.demo.shop.repository.CustomerRepository;
 import com.example.demo.shop.repository.OrderDetailsRepository;
 import com.example.demo.shop.repository.OrdersRepository;
@@ -44,14 +42,18 @@ public class OrderService {
         return ordersRepository.save(orders);
     }
 
-    public Orders createUpdateCustomer(@RequestBody Orders orders, String id) {
+    public Orders createUpdateOrder(@RequestBody Orders orders, String id) {
         Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
-        ordersToUpdate.setOrderNo(orders.getOrderNo());
-        ordersToUpdate.setOrderDate(orders.getOrderDate());
-        ordersToUpdate.setOrderTotal(orders.getOrderTotal());
-        ordersToUpdate.setShippingDate(orders.getShippingDate());
-        ordersToUpdate.setIsDelivered(orders.getIsDelivered());
-        return ordersRepository.save(ordersToUpdate);
+        if(orders.getOrderStatus() != OrderStatus.Pending){
+            System.out.println("Not allowed to update  order");
+        }else{
+            ordersToUpdate.setOrderNo(orders.getOrderNo());
+            ordersToUpdate.setOrderDate(orders.getOrderDate());
+            ordersToUpdate.setOrderTotal(orders.getOrderTotal());
+            ordersToUpdate.setShippingDate(orders.getShippingDate());
+            ordersToUpdate.setIsDelivered(orders.getIsDelivered());
+        }
+        return  ordersRepository.save(ordersToUpdate);
     }
 
     public Orders updateOrderStatusProcess(String id) {
@@ -83,12 +85,9 @@ public class OrderService {
         return ordersRepository.save(ordersToUpdate);
     }
 
-
-    // All this ok!
     public void  deleteOrderWithDetails(String id) throws Exception {
-
         Orders orders = ordersRepository.findById(id).orElseThrow();
-        if(orders.getOrderStatus() != OrderStatus.Pending){
+        if(orders.getOrderStatus()!=OrderStatus.Pending){
             throw new Exception("Not allowed to delete  order");
         }
         Optional<List<OrderDetails>> orderDetails = orderDetailsRepository.findAllByOrders(orders);

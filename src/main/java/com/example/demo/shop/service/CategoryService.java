@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepositoryDetails;
+
     public Category CreateCategoryOrder(Category category, String id){
         Category categoryToUpdate = categoryRepositoryDetails.findById(id).orElseThrow();
         categoryToUpdate.setName(category.getName());

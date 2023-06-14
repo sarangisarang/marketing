@@ -64,9 +64,9 @@ public class OrderController {
         return orderService.createSaveOrders(orders,CustumerId);
     }
 
-    @PutMapping("/order/{id}") // This is works, all is ok!  have questions! updateCustomer??
-    public Orders updateCustomer(@RequestBody Orders orders, @PathVariable String id){
-        return orderService.createUpdateCustomer(orders,id);
+    @PutMapping("/order/{id}") // This is works, all is ok!
+    public Orders updateOrder(@RequestBody Orders orders, @PathVariable String id){
+        return orderService.createUpdateOrder(orders,id);
     }
 
     @PutMapping("/order/{id}/process") // Test this all ok!.
