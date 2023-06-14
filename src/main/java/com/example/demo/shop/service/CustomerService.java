@@ -20,6 +20,5 @@ public class CustomerService {
         customerToUpdate.setCity(customer.getCity());
         customerToUpdate.setPhone(customer.getPhone());
         return customerRepository.save(customerToUpdate);
-
     }
 }

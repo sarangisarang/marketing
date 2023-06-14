@@ -4,6 +4,7 @@ import com.example.demo.shop.Customer;
 import com.example.demo.shop.OrderDetails;
 import com.example.demo.shop.Orders;
 import com.example.demo.shop.Product;
+import com.example.demo.shop.controller.OrderController;
 import com.example.demo.shop.repository.CustomerRepository;
 import com.example.demo.shop.repository.OrderDetailsRepository;
 import com.example.demo.shop.repository.OrdersRepository;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -23,6 +25,7 @@ public class OrderService {
     private CustomerRepository customerRepository;
     @Autowired
     private OrdersRepository ordersRepository;
+
 
     public BigInteger getTotalOrderedAmount() {
         BigInteger amount = BigInteger.ZERO;
@@ -59,7 +62,7 @@ public class OrderService {
 
     public Orders updateOrderStatusSchip(String id) {
         Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
-        if (ordersToUpdate.getOrderStatus() == OrderStatus.Pending) {
+        if (ordersToUpdate.getOrderStatus() == OrderStatus.Processing){
             ordersToUpdate.setOrderStatus(OrderStatus.shipped);
             ordersRepository.save(ordersToUpdate);
         } else {
@@ -68,15 +71,30 @@ public class OrderService {
         return ordersRepository.save(ordersToUpdate);
     }
 
-
     public Orders updateOrderStatusClose(String id){
         Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
         ordersToUpdate.setOrderStatus(OrderStatus.closed);
         return ordersRepository.save(ordersToUpdate);
     }
+
     public Orders updateOrderStatusPending(String id){
         Orders ordersToUpdate = ordersRepository.findById(id).orElseThrow();
         ordersToUpdate.setOrderStatus(OrderStatus.Pending);
         return ordersRepository.save(ordersToUpdate);
+    }
+
+
+    // All this ok!
+    public void  deleteOrderWithDetails(String id) throws Exception {
+
+        Orders orders = ordersRepository.findById(id).orElseThrow();
+        if(orders.getOrderStatus() != OrderStatus.Pending){
+            throw new Exception("Not allowed to delete  order");
+        }
+        Optional<List<OrderDetails>> orderDetails = orderDetailsRepository.findAllByOrders(orders);
+        if(!orderDetails.isEmpty()){
+            orderDetailsRepository.deleteAll(orderDetails.get());
+        }
+        ordersRepository.delete(orders);
     }
 }
