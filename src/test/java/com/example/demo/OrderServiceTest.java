@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.shop.Customer;
 import com.example.demo.shop.Orders;
 import com.example.demo.shop.repository.OrdersRepository;
 import com.example.demo.shop.service.OrderService;
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 @SpringBootTest
 public class OrderServiceTest {
@@ -22,6 +25,11 @@ public class OrderServiceTest {
     @Test
     public void given_order_with_status_progress_delete(){
         Orders orders = new Orders();
+        orders.setOrderNo(20);
+        orders.setOrderTotal(50);
+        orders.setShippingDate(LocalDate.now());
+        orders.setOrderDate(LocalDate.now());
+        orders.setIsDelivered("tashipare");
         orders.setOrderStatus(OrderStatus.Processing);
         orders.setId("1234");
         ordersRepository.save(orders);
