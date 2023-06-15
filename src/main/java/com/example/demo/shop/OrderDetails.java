@@ -11,6 +11,7 @@ public class OrderDetails{
     private String Qty;
     private Integer Price;
     private Integer Subtotal;
+
     @ManyToOne
     @JoinColumn(name="Order_id")
     private Orders orders;

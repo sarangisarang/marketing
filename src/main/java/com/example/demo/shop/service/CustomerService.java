@@ -1,5 +1,4 @@
 package com.example.demo.shop.service;
-
 import com.example.demo.shop.Customer;
 import com.example.demo.shop.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;

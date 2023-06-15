@@ -14,6 +14,7 @@ public class Orders {
     private Integer orderTotal;
     private LocalDate shippingDate;
     private String isDelivered;
+
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 

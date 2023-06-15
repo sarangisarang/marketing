@@ -7,9 +7,7 @@ import com.example.demo.shop.repository.OrderDetailsRepository;
 import com.example.demo.shop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -27,12 +25,14 @@ public class ProductService {
         List<OrderDetails> details = orderDetailsRepository.findAllByProductCategory(category);
         return details.stream().map(d -> d.getProduct()).toList();
     }
+
     public Product createSaveProduct(@RequestBody Product product, String categoryId){
         product.setId(UUID.randomUUID().toString());
         Category category = categoryRepository.findById(categoryId).orElseThrow();
         product.setCategory(category);
         return productRepository.save(product);
     }
+
     public Product createUpdateProucts(@RequestBody Product product,String id){
         Product productsToUpdate = productRepository.findById(id).orElseThrow();
         productsToUpdate.setProductName(product.getProductName());

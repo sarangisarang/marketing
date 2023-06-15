@@ -20,7 +20,6 @@ public class Product {
     @JoinColumn(name="Category_id")
     private Category category;
 
-
     public byte[] getImage2() {
         return image2;
     }

@@ -1,5 +1,4 @@
 package com.example.demo.shop;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
