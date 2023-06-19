@@ -1,13 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.shop.Category;
-import com.example.demo.shop.Customer;
-import com.example.demo.shop.Orders;
-import com.example.demo.shop.Product;
-import com.example.demo.shop.repository.CategoryRepository;
-import com.example.demo.shop.repository.CustomerRepository;
-import com.example.demo.shop.repository.OrdersRepository;
-import com.example.demo.shop.repository.ProductRepository;
+import com.example.demo.shop.*;
+import com.example.demo.shop.repository.*;
 import com.example.demo.shop.service.*;
 import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Assertions;
@@ -35,6 +29,10 @@ public class OrderServiceTest {
     private CustomerRepository customerRepository;
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private OrderDetailsRepository orderDetailsRepository;
+    @Autowired
+    private OrderDetailsService orderDetailsService;
 
 
     @Test
@@ -96,6 +94,13 @@ public class OrderServiceTest {
     }
     @Test
     public void give_orderdetails_with_all(){
-
+        OrderDetails orderDetails = new OrderDetails();
+        orderDetails.setSubtotal(123);
+        orderDetails.setQty("all");
+        orderDetails.setId("789");
+        orderDetails.setPrice(3000);
+        orderDetailsRepository.save(orderDetails);
+        OrderDetails neworderdetails = orderDetailsRepository.findById("789").orElseThrow();
+        Assertions.assertNotNull(neworderdetails);
     }
 }
