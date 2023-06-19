@@ -49,12 +49,12 @@ public class OrderServiceTest {
         Product product = new Product();
         product.setProductDesc("Apfel");
         product.setProductName("Iphone");
-//      product.setPrece();  dont undestund how take values.
         product.setId("2345");
-//      product.setImage1();
-//      product.getImage2();    how take values?
-//      product.setImage3();
-//      product.setStock();
+//      product.setPrece();-----------------------I
+//      product.setImage1();----------------------I
+//      product.getImage2();----How take Values?--I
+//      product.setImage3();----------------------I
+//      product.setStock();-----------------------I
         productRepository.save(product);
         Product newproducts = productRepository.findById("2345").orElseThrow();
         Assertions.assertNotNull(newproducts);
