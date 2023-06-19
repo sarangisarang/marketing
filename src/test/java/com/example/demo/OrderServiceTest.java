@@ -1,9 +1,7 @@
 package com.example.demo;
-
 import com.example.demo.shop.*;
 import com.example.demo.shop.repository.*;
 import com.example.demo.shop.service.*;
-import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +61,7 @@ public class OrderServiceTest {
         productRepository.save(product);
         Product newproducts = productRepository.findById("2345").orElseThrow();
         Assertions.assertNotNull(newproducts);
+
     }
     @Test
     public void give_category_with_all(){
