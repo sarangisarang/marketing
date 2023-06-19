@@ -1,10 +1,13 @@
 package com.example.demo;
 
+import com.example.demo.shop.Category;
 import com.example.demo.shop.Customer;
 import com.example.demo.shop.Orders;
 import com.example.demo.shop.Product;
+import com.example.demo.shop.repository.CategoryRepository;
 import com.example.demo.shop.repository.OrdersRepository;
 import com.example.demo.shop.repository.ProductRepository;
+import com.example.demo.shop.service.CategoryService;
 import com.example.demo.shop.service.OrderService;
 import com.example.demo.shop.service.OrderStatus;
 import com.example.demo.shop.service.ProductService;
@@ -13,9 +16,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Service;
-
-import java.math.BigInteger;
 import java.time.LocalDate;
 
 @SpringBootTest
@@ -29,6 +29,10 @@ public class OrderServiceTest {
     private ProductRepository productRepository;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CategoryRepository categoryRepository;
+    @Autowired
+    private CategoryService categoryService;
 
     @Test
     public void given_order_with_status_progress_delete(){
@@ -58,5 +62,17 @@ public class OrderServiceTest {
         productRepository.save(product);
         Product newproducts = productRepository.findById("2345").orElseThrow();
         Assertions.assertNotNull(newproducts);
+    }
+    @Test
+    public void give_category_with_all(){
+        Category category = new Category();
+        category.setName("Book");
+        category.setImage("Image");
+        category.setDescription("Clasica");
+        category.setId("5678");
+        categoryRepository.save(category);
+        Category NewCategory = categoryRepository.findById("5678").orElseThrow();
+        Assertions.assertNotNull(NewCategory);
+
     }
 }
