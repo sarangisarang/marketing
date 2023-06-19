@@ -5,12 +5,10 @@ import com.example.demo.shop.Customer;
 import com.example.demo.shop.Orders;
 import com.example.demo.shop.Product;
 import com.example.demo.shop.repository.CategoryRepository;
+import com.example.demo.shop.repository.CustomerRepository;
 import com.example.demo.shop.repository.OrdersRepository;
 import com.example.demo.shop.repository.ProductRepository;
-import com.example.demo.shop.service.CategoryService;
-import com.example.demo.shop.service.OrderService;
-import com.example.demo.shop.service.OrderStatus;
-import com.example.demo.shop.service.ProductService;
+import com.example.demo.shop.service.*;
 import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -33,6 +31,11 @@ public class OrderServiceTest {
     private CategoryRepository categoryRepository;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private CustomerRepository customerRepository;
+    @Autowired
+    private CustomerService customerService;
+
 
     @Test
     public void given_order_with_status_progress_delete(){
@@ -73,6 +76,26 @@ public class OrderServiceTest {
         categoryRepository.save(category);
         Category NewCategory = categoryRepository.findById("5678").orElseThrow();
         Assertions.assertNotNull(NewCategory);
+
+    }
+    @Test
+    public void give_customer_with_all(){
+        Customer customer = new Customer();
+        customer.setPhone(1545453234);
+        customer.setCity("Dusseldorf");
+        customer.setAddress("Berlinealle50");
+        customer.setPostcode(40232);
+        customer.setPassword("Anonimus");
+        customer.setEmail("beka.kikalishvili.it@gmail.com");
+        customer.setFirstName("beka");
+        customer.setLastName("kikalishvili");
+        customer.setId("6789");
+        customerRepository.save(customer);
+        Customer newcustomer = customerRepository.findById("6789").orElseThrow();
+        Assertions.assertNotNull(newcustomer);
+    }
+    @Test
+    public void give_orderdetails_with_all(){
 
     }
 }
