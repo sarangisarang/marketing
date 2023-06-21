@@ -1,8 +1,6 @@
 package com.example.demo.shop;
-
 import com.example.demo.shop.service.OrderStatus;
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity

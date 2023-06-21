@@ -129,8 +129,6 @@ public class ShopController{
 
     @DeleteMapping("/product/{id}")
     public void deleteProducts(@PathVariable String id) {
-        Product product = productRepository.findById(id).orElseThrow();
-        productRepository.delete(product);
-
+        productService.deleteProduct(id);
     }
 }

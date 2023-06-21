@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -24,6 +25,15 @@ public class ProductService {
         Category category = categoryRepository.findByName(categoryName);
         List<OrderDetails> details = orderDetailsRepository.findAllByProductCategory(category);
         return details.stream().map(d -> d.getProduct()).toList();
+    }
+    public void deleteProduct(String id){
+        Product product = productRepository.findById(id).orElseThrow();
+        Optional<List<OrderDetails>> orderDetailsList = orderDetailsRepository.findAllByProduct(product);
+        if(orderDetailsList.isEmpty()){
+            productRepository.delete(product);
+        }else{
+            throw new RuntimeException("can not delete this Product");
+        }
     }
 
     public Product createSaveProduct(@RequestBody Product product, String categoryId){
