@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 public class OrderServiceTest {
-
     @Autowired
     private OrdersRepository ordersRepository;
     @Autowired
@@ -32,7 +32,6 @@ public class OrderServiceTest {
     @Autowired
     private OrderDetailsService orderDetailsService;
 
-
     @Test
     public void given_order_with_status_progress_delete(){
         Orders orders = new Orders();
@@ -41,11 +40,12 @@ public class OrderServiceTest {
         orders.setShippingDate(LocalDate.now());
         orders.setOrderDate(LocalDate.now());
         orders.setIsDelivered("tashipare");
-        orders.setOrderStatus(OrderStatus.Processing);
+        orders.setOrderStatus(OrderStatus.Pending);
         orders.setId("1234");
         ordersRepository.save(orders);
         Orders neworders =  ordersRepository.findById("1234").orElseThrow();
         Assertions.assertNotNull(neworders);
+        Exception exception = assertThrows(Exception.class,()-> orderService.deleteOrderWithDetails(neworders.getId()));
     }
     @Test
     public void give_product_with_all(){
