@@ -55,10 +55,9 @@ public class ShopController{
         return categoryService.CreateCategoryOrder(category,id);
     }
 
-    @DeleteMapping("/category/{id}")
+    @DeleteMapping("/category/{id}") // testing here
     public void deleteCategory(@PathVariable String id) {
-        Category category = categoryRepository.findById(id).orElseThrow();
-        categoryRepository.delete(category);
+        categoryService.deleteCategory(id);
     }
 
     //GetMapping, GetMappig(add Id), PostMapping, PutMapping, DeleteMapping.

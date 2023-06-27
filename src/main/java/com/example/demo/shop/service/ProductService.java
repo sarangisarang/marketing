@@ -26,10 +26,11 @@ public class ProductService {
         List<OrderDetails> details = orderDetailsRepository.findAllByProductCategory(category);
         return details.stream().map(d -> d.getProduct()).toList();
     }
+    // work here
     public void deleteProduct(String id){
         Product product = productRepository.findById(id).orElseThrow();
         Optional<List<OrderDetails>> orderDetailsList = orderDetailsRepository.findAllByProduct(product);
-        if(orderDetailsList.isEmpty()){
+        if(orderDetailsList.get().isEmpty()){
             productRepository.delete(product);
         }else{
             throw new RuntimeException("can not delete this Product");
