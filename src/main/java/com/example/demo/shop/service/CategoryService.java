@@ -26,12 +26,11 @@ public class CategoryService {
     }
     public void deleteCategory(String id){  //  testing here
         Category category = categoryRepository.findById(id).orElseThrow();
-        Optional<List<Product>> product = productRepository.findAllByNameProduct(category.getId());
-        if(product.get().isEmpty()){
+        Optional<List<Product>> products = productRepository.findAllByCategory(category);
+        if(products.get().isEmpty()){
             categoryRepository.delete(category);
         }else{
             throw new RuntimeException("Not allowed to delete this Category");
         }
     }
-
 }
