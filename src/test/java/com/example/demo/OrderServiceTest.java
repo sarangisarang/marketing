@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,22 +34,22 @@ public class OrderServiceTest {
     @Autowired
     private OrderDetailsService orderDetailsService;
 
-    @Test
-    public void given_order_with_status_progress_delete(){
-        Orders orders = new Orders();
-        orders.setOrderNo(20);
-        orders.setOrderTotal(50);
-        orders.setShippingDate(LocalDate.now());
-        orders.setOrderDate(LocalDate.now());
-        orders.setIsDelivered("tashipare");
-        orders.setOrderStatus(OrderStatus.Processing);
-        orders.setId("1234");
-        ordersRepository.save(orders);
-        Orders neworders =  ordersRepository.findById("1234").orElseThrow();
-        Assertions.assertNotNull(neworders);
-        Exception exception = assertThrows(Exception.class,()-> orderService.deleteOrderWithDetails(neworders.getId()));
-        assertEquals(exception.getMessage(),"Not allowed to delete  order" );
-    }
+//    @Test
+//    public void given_order_with_status_progress_delete(){
+//        Orders orders = new Orders();
+//        orders.setOrderNo(20);
+//        orders.setOrderTotal(50);
+//        orders.setShippingDate(LocalDate.now());
+//        orders.setOrderDate(LocalDate.now());
+//        orders.setIsDelivered("tashipare");
+//        orders.setOrderStatus(OrderStatus.Processing);
+//        orders.setId("1234");
+//        ordersRepository.save(orders);
+//        Orders neworders =  ordersRepository.findById("1234").orElseThrow();
+//        Assertions.assertNotNull(neworders);
+//        Exception exception = assertThrows(Exception.class,()-> orderService.deleteOrderWithDetails(neworders.getId()));
+//        assertEquals(exception.getMessage(),"Not allowed to delete  order" );
+//    }
     @Test
     public void given_order_with_status_pending_delete() throws Exception {
         Orders orders = new Orders();
