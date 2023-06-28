@@ -34,22 +34,22 @@ public class OrderServiceTest {
     @Autowired
     private OrderDetailsService orderDetailsService;
 
-//    @Test
-//    public void given_order_with_status_progress_delete(){
-//        Orders orders = new Orders();
-//        orders.setOrderNo(20);
-//        orders.setOrderTotal(50);
-//        orders.setShippingDate(LocalDate.now());
-//        orders.setOrderDate(LocalDate.now());
-//        orders.setIsDelivered("tashipare");
-//        orders.setOrderStatus(OrderStatus.Processing);
-//        orders.setId("1234");
-//        ordersRepository.save(orders);
-//        Orders neworders =  ordersRepository.findById("1234").orElseThrow();
-//        Assertions.assertNotNull(neworders);
-//        Exception exception = assertThrows(Exception.class,()-> orderService.deleteOrderWithDetails(neworders.getId()));
-//        assertEquals(exception.getMessage(),"Not allowed to delete  order" );
-//    }
+    @Test
+    public void given_order_with_status_progress_delete(){
+        Orders orders = new Orders();
+        orders.setOrderNo(20);
+        orders.setOrderTotal(50);
+        orders.setShippingDate(LocalDate.now());
+        orders.setOrderDate(LocalDate.now());
+        orders.setIsDelivered("tashipare");
+        orders.setOrderStatus(OrderStatus.Processing);
+        orders.setId("1234");
+        ordersRepository.save(orders);
+        Orders neworders =  ordersRepository.findById("1234").orElseThrow();
+        Assertions.assertNotNull(neworders);
+        Exception exception = assertThrows(Exception.class,()-> orderService.deleteOrderWithDetails(neworders.getId()));
+        assertEquals(exception.getMessage(),"Not allowed to delete  order" );
+    }
     @Test
     public void given_order_with_status_pending_delete() throws Exception {
         Orders orders = new Orders();
@@ -69,7 +69,7 @@ public class OrderServiceTest {
 
     }
     @Test
-    public void give_product_with_all_exists_delete(){
+    public void given_product_with_all_exists_delete(){
         Product product = new Product();
         product.setProductDesc("Apfel");
         product.setProductName("Iphone");
@@ -82,11 +82,12 @@ public class OrderServiceTest {
         productRepository.save(product);
         Product newproducts = productRepository.findById("2345").orElseThrow();
         Assertions.assertNotNull(newproducts);
-        Exception exception = assertThrows(Exception.class,()-> productService.deleteProduct(newproducts.getId()));
-        assertEquals(exception.getMessage(),"can not delete this Product");
+        productService.deleteProduct(newproducts.getId());
+        Exception exception = assertThrows(Exception.class,()-> productRepository.findById("2345").orElseThrow(()->new RuntimeException("order not finde")));
+        assertEquals(exception.getMessage(),"order not finde");
     }
-    @Test  // testing here!
-    public void give_product_with_all_not_exists_delete(){
+    @Test  // testing here!?????
+    public void given_product_with_all_not_exists_delete(){
         Product product = new Product();
         product.setProductDesc("Apfel");
         product.setProductName("Iphone");
@@ -100,8 +101,8 @@ public class OrderServiceTest {
         Exception exception = assertThrows(Exception.class,()-> productService.deleteProduct(product.getId()));
         assertNotEquals(exception.getMessage(),"order not finde");
     }
-    @Test
-    public void give_category_with_all(){
+    @Test // test here too ???????
+    public void given_category_with_all(){
         Category category = new Category();
         category.setName("Book");
         category.setImage("Image");
@@ -112,8 +113,17 @@ public class OrderServiceTest {
         Assertions.assertNotNull(NewCategory);
 
     }
+    @Test // test here too ???????
+    public void givenn_catalogy_not_delete_when_have_in_product(){
+        Category category = new Category();
+        category.setId("1234");
+        category.setName("Book");
+        category.setName("Image");
+        category.setDescription("clasica");
+        categoryRepository.save(category);
+    }
     @Test
-    public void give_customer_with_all(){
+    public void given_customer_with_all(){
         Customer customer = new Customer();
         customer.setPhone(1545453234);
         customer.setCity("Dusseldorf");
@@ -129,7 +139,7 @@ public class OrderServiceTest {
         Assertions.assertNotNull(newcustomer);
     }
     @Test
-    public void give_orderdetails_with_all(){
+    public void given_orderdetails_with_all(){
         OrderDetails orderDetails = new OrderDetails();
         orderDetails.setSubtotal(123);
         orderDetails.setQty("all");
