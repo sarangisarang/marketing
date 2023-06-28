@@ -6,9 +6,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import java.math.BigInteger;
 import java.time.LocalDate;
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -35,7 +34,7 @@ public class OrderServiceTest {
     private OrderDetailsService orderDetailsService;
 
     @Test
-    public void given_order_with_status_progress_delete(){
+    public void given_order_with_all_when_has_status_progress_cannot_delete(){
         Orders orders = new Orders();
         orders.setOrderNo(20);
         orders.setOrderTotal(50);
@@ -51,7 +50,7 @@ public class OrderServiceTest {
         assertEquals(exception.getMessage(),"Not allowed to delete  order" );
     }
     @Test
-    public void given_order_with_status_pending_delete() throws Exception {
+    public void given_order_with_all_when_has_status_pending_can_delete() throws Exception {
         Orders orders = new Orders();
         orders.setOrderNo(20);
         orders.setOrderTotal(50);
@@ -66,42 +65,81 @@ public class OrderServiceTest {
         orderService.deleteOrderWithDetails(neworders.getId());
         Exception exception = assertThrows(Exception.class,()-> ordersRepository.findById("1234").orElseThrow(()->new RuntimeException("order not finde")));
         assertEquals(exception.getMessage(),"order not finde");
-
     }
-    @Test
-    public void given_product_with_all_exists_delete(){
+    @Test // all is ok!
+    public void given_product_with_all_when_has_in_orderdetails_cannot_delete(){
         Product product = new Product();
         product.setProductDesc("Apfel");
         product.setProductName("Iphone");
         product.setId("2345");
-//      product.setPrece();-----------------------I
-//      product.setImage1();----------------------I
-//      product.getImage2();----How take Values?--I
-//      product.setImage3();----------------------I
-//      product.setStock();-----------------------I
+        product.setPrece(BigInteger.valueOf(1234));
+        product.setImage1("204.29.207.217".getBytes());
+        product.setImage2("204.29.207.218".getBytes());
+        product.setImage3("204.29.207.219".getBytes());
+        product.setStock(BigInteger.valueOf(2000));
         productRepository.save(product);
+        OrderDetails orderDetails = new OrderDetails();
+        orderDetails.setId("1234");
+        orderDetails.setProduct(product);
+        orderDetails.setSubtotal(200);
+        orderDetails.setPrice(200);
+        orderDetails.setQty("200");
+        orderDetailsRepository.save(orderDetails);
         Product newproducts = productRepository.findById("2345").orElseThrow();
         Assertions.assertNotNull(newproducts);
-        productService.deleteProduct(newproducts.getId());
-        Exception exception = assertThrows(Exception.class,()-> productRepository.findById("2345").orElseThrow(()->new RuntimeException("order not finde")));
-        assertEquals(exception.getMessage(),"order not finde");
+        Exception exception = assertThrows(Exception.class,()-> productService.deleteProduct(newproducts.getId()));
+        assertEquals(exception.getMessage(),"can not delete this Product");
     }
-    @Test  // testing here!?????
-    public void given_product_with_all_not_exists_delete(){
+    @Test  // all is ok!
+    public void given_product_with_all_when_hasnot_in_orderdetails_can_delete(){
         Product product = new Product();
         product.setProductDesc("Apfel");
         product.setProductName("Iphone");
         product.setId("2345");
-//      product.setPrece();-----------------------I
-//      product.setImage1();----------------------I
-//      product.getImage2();----How take Values?--I
-//      product.setImage3();----------------------I
-//      product.setStock();-----------------------I
+        product.setPrece(BigInteger.valueOf(1234));
+        product.setImage1("204.29.207.217".getBytes());
+        product.setImage2("204.29.207.218".getBytes());
+        product.setImage3("204.29.207.219".getBytes());
+        product.setStock(BigInteger.valueOf(2000));
         Assertions.assertNotNull(product);
         Exception exception = assertThrows(Exception.class,()-> productService.deleteProduct(product.getId()));
         assertNotEquals(exception.getMessage(),"order not finde");
     }
-    @Test // test here too ???????
+    @Test // all is ok!
+    public void givenn_catalogy_with_all_when_has_in_product_cant_delete(){
+        Category category = new Category();
+        category.setId("1234");
+        category.setName("Book");
+        category.setName("Image");
+        category.setDescription("clasica");
+        categoryRepository.save(category);
+        Product product = new Product();
+        product.setProductDesc("Apfel");
+        product.setProductName("Iphone");
+        product.setId("2345");
+        product.setPrece(BigInteger.valueOf(1234));
+        product.setImage1("204.29.207.217".getBytes());
+        product.setImage2("204.29.207.218".getBytes());
+        product.setImage3("204.29.207.219".getBytes());
+        product.setStock(BigInteger.valueOf(2000));
+        product.setCategory(category);
+        productRepository.save(product);
+        Exception exception = assertThrows(Exception.class,()->categoryService.deleteCategory(category.getId()));
+        assertEquals(exception.getMessage(),"Not allowed to delete this Category");
+    }
+    @Test // all is ok!
+    public void givenn_catalogy_with_all_when_has_not_in_product_can_delete() {
+        Category category = new Category();
+        category.setId("1234");
+        category.setName("Book");
+        category.setName("Image");
+        category.setDescription("clasica");
+        categoryRepository.save(category);
+        categoryService.deleteCategory(category.getId());
+        Exception exception = assertThrows(Exception.class, () -> categoryRepository.findById("1234").orElseThrow(() -> new RuntimeException("order not finde")));
+        assertEquals(exception.getMessage(), "order not finde");
+    }
+    @Test // all is ok!
     public void given_category_with_all(){
         Category category = new Category();
         category.setName("Book");
@@ -111,16 +149,6 @@ public class OrderServiceTest {
         categoryRepository.save(category);
         Category NewCategory = categoryRepository.findById("5678").orElseThrow();
         Assertions.assertNotNull(NewCategory);
-
-    }
-    @Test // test here too ???????
-    public void givenn_catalogy_not_delete_when_have_in_product(){
-        Category category = new Category();
-        category.setId("1234");
-        category.setName("Book");
-        category.setName("Image");
-        category.setDescription("clasica");
-        categoryRepository.save(category);
     }
     @Test
     public void given_customer_with_all(){

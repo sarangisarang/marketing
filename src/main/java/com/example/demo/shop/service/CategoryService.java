@@ -24,6 +24,7 @@ public class CategoryService {
         categoryToUpdate.setImage(category.getImage());
         return categoryRepository.save(categoryToUpdate);
     }
+
     public void deleteCategory(String id){  //  testing here
         Category category = categoryRepository.findById(id).orElseThrow();
         Optional<List<Product>> products = productRepository.findAllByCategory(category);
