@@ -23,7 +23,6 @@ public class OrderService {
     @Autowired
     private OrdersRepository ordersRepository;
 
-
     public BigInteger getTotalOrderedAmount() {
         BigInteger amount = BigInteger.ZERO;
         List<OrderDetails> details = orderDetailsRepository.findAll();

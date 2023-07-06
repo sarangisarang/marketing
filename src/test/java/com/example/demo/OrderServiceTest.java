@@ -106,7 +106,7 @@ public class OrderServiceTest {
         assertNotEquals(exception.getMessage(),"order not finde");
     }
     @Test // all is ok!
-    public void givenn_catalogy_with_all_when_has_in_product_cant_delete(){
+    public void givenn_catalogy_with_all_when_has_in_product_cannot_delete(){
         Category category = new Category();
         category.setId("1234");
         category.setName("Book");
