@@ -66,7 +66,7 @@ public class OrderServiceTest {
         Exception exception = assertThrows(Exception.class,()-> ordersRepository.findById("1234").orElseThrow(()->new RuntimeException("order not finde")));
         assertEquals(exception.getMessage(),"order not finde");
     }
-    @Test // all is ok!
+    @Test
     public void given_product_with_all_when_has_in_orderdetails_cannot_delete(){
         Product product = new Product();
         product.setProductDesc("Apfel");
@@ -90,7 +90,7 @@ public class OrderServiceTest {
         Exception exception = assertThrows(Exception.class,()-> productService.deleteProduct(newproducts.getId()));
         assertEquals(exception.getMessage(),"can not delete this Product");
     }
-    @Test  // all is ok!
+    @Test
     public void given_product_with_all_when_hasnot_in_orderdetails_can_delete(){
         Product product = new Product();
         product.setProductDesc("Apfel");
@@ -105,7 +105,7 @@ public class OrderServiceTest {
         Exception exception = assertThrows(Exception.class,()-> productService.deleteProduct(product.getId()));
         assertNotEquals(exception.getMessage(),"order not finde");
     }
-    @Test // all is ok!
+    @Test
     public void givenn_catalogy_with_all_when_has_in_product_cannot_delete(){
         Category category = new Category();
         category.setId("1234");
@@ -127,7 +127,7 @@ public class OrderServiceTest {
         Exception exception = assertThrows(Exception.class,()->categoryService.deleteCategory(category.getId()));
         assertEquals(exception.getMessage(),"Not allowed to delete this Category");
     }
-    @Test // all is ok!
+    @Test
     public void givenn_catalogy_with_all_when_has_not_in_product_can_delete() {
         Category category = new Category();
         category.setId("1234");
@@ -139,7 +139,7 @@ public class OrderServiceTest {
         Exception exception = assertThrows(Exception.class, () -> categoryRepository.findById("1234").orElseThrow(() -> new RuntimeException("order not finde")));
         assertEquals(exception.getMessage(), "order not finde");
     }
-    @Test // all is ok!
+    @Test
     public void given_category_with_all(){
         Category category = new Category();
         category.setName("Book");

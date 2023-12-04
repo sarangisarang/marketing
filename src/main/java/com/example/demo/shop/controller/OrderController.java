@@ -59,9 +59,9 @@ public class OrderController {
         return ordersRepository.findById(id).orElseThrow();
     }
 
-    @PostMapping("/order/{CustumerId}") // This is works, all is ok!
-    public Orders saveOrders(@RequestBody Orders orders, @PathVariable String CustumerId){
-        return orderService.createSaveOrders(orders,CustumerId);
+    @PostMapping("/order/{CustomerId}") // This is works, all is ok!
+    public Orders saveOrders(@RequestBody Orders orders, @PathVariable String CustomerId){
+        return orderService.createSaveOrders(orders,CustomerId);
     }
 
     @PutMapping("/order/{id}") // This is works, all is ok!

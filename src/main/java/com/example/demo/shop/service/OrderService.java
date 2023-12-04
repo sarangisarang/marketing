@@ -33,9 +33,9 @@ public class OrderService {
         return amount;
     }
 
-    public Orders createSaveOrders(@RequestBody Orders orders, String CustumerId) {
+    public Orders createSaveOrders(@RequestBody Orders orders, String CustomerId) {
         orders.setId(UUID.randomUUID().toString());
-        Customer customer = customerRepository.findById(CustumerId).orElseThrow();
+        Customer customer = customerRepository.findById(CustomerId).orElseThrow();
         orders.setCustomer(customer);
         return ordersRepository.save(orders);
     }

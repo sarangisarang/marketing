@@ -55,7 +55,7 @@ public class ShopController{
         return categoryService.CreateCategoryOrder(category,id);
     }
 
-    @DeleteMapping("/category/{id}") // testing here
+    @DeleteMapping("/category/{id}")
     public void deleteCategory(@PathVariable String id) {
         categoryService.deleteCategory(id);
     }
@@ -78,7 +78,7 @@ public class ShopController{
         return customerRepository.save(customer);
     }
 
-    @PutMapping("/customer/{id}") // this is works, Tested all ok!
+    @PutMapping("/customer/{id}")
     public Customer updateCustomer(@RequestBody Customer customer, @PathVariable String id){
         return customerService.CreateCustomerOrder(customer,id);
     }
@@ -101,7 +101,7 @@ public class ShopController{
         return productRepository.findAllByCategoryName(categoryName);
     }
 
-    @GetMapping("/products/{categoryName}/ordered") // Tested This works, all is ok!!
+    @GetMapping("/products/{categoryName}/ordered")
     public List<Product> getOrderedProductsByCategory(@PathVariable String categoryName) {
         return productService.creategetOrderedProductsByCategory(categoryName);
     }
@@ -116,12 +116,12 @@ public class ShopController{
         return productRepository.findById(id).orElseThrow();
     }
 
-    @PostMapping("/product/{categoryId}") // Tested all this work!
+    @PostMapping("/product/{categoryId}")
     public Product saveProduct(@RequestBody Product product, @PathVariable String categoryId){
         return productService.createSaveProduct(product,categoryId);
     }
 
-    @PutMapping("/product/{id}")  // Tested all this works!
+    @PutMapping("/product/{id}")
     public Product updateProucts(@RequestBody Product product, @PathVariable String id){
         return productService.createUpdateProucts(product,id);
     }

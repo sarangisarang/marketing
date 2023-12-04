@@ -5,6 +5,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import java.math.BigInteger;
 
+
 @Entity
 public class Product {
     @Id
