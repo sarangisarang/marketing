@@ -1,6 +1,6 @@
 package com.example.demo.shop.repository;
-import com.example.demo.shop.Category;
-import com.example.demo.shop.Product;
+import com.example.demo.shop.domain.Category;
+import com.example.demo.shop.domain.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;

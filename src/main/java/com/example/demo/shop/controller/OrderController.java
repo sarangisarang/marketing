@@ -1,6 +1,6 @@
 package com.example.demo.shop.controller;
-import com.example.demo.shop.OrderDetails;
-import com.example.demo.shop.Orders;
+import com.example.demo.shop.domain.OrderDetails;
+import com.example.demo.shop.domain.Orders;
 import com.example.demo.shop.repository.OrderDetailsRepository;
 import com.example.demo.shop.repository.OrdersRepository;
 import com.example.demo.shop.service.OrderDetailsService;
@@ -21,7 +21,13 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+
+    @GetMapping("/")
+    public String Present(){
+        return "Welcome your shop";
+    }
     // Orderdetails: GetMapping, PostMapping, PutMapping, DeleteMapping.
+
     @GetMapping("/orderdetails")
     public List<OrderDetails> getallOrderDetails(){
         return orderDetailsRepository.findAll();

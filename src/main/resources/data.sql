@@ -11,3 +11,5 @@ insert into Product(id,product_Name,product_Desc,image1,image2,image3,Prece,Stoc
 insert into Order_Details(id,Qty,Price,Subtotal,Order_id,Product_id) values ('1','1',20,40,'1','1');
 insert into Order_Details(id,Qty,Price,Subtotal,Order_id,Product_id) values ('2','2',2000,2000,'1','2');
 insert into Order_Details(id,Qty,Price,Subtotal,Order_id,Product_id) values ('3','2',1000,1000,'1','3');
+insert into Service_User (id, username, password) values ('1', 'admin', '{bcrypt}$2a$10$UU.CwNSPRXgGfuMnGjyNjuWqt69Si0eZle3wTJmDpYx02UAxLoUJm');
+insert into User_Role (id, role_name, user_id) values ('1', 'ROLE_ADMIN', '1');

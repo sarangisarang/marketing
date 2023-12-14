@@ -1,8 +1,8 @@
 package com.example.demo.shop.service;
-import com.example.demo.shop.Customer;
-import com.example.demo.shop.OrderDetails;
-import com.example.demo.shop.Orders;
-import com.example.demo.shop.Product;
+import com.example.demo.shop.domain.Customer;
+import com.example.demo.shop.domain.OrderDetails;
+import com.example.demo.shop.domain.Orders;
+import com.example.demo.shop.domain.Product;
 import com.example.demo.shop.repository.CustomerRepository;
 import com.example.demo.shop.repository.OrderDetailsRepository;
 import com.example.demo.shop.repository.OrdersRepository;

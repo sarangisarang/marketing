@@ -1,5 +1,7 @@
 package com.example.demo.shop.controller;
-import com.example.demo.shop.*;
+import com.example.demo.shop.domain.Category;
+import com.example.demo.shop.domain.Customer;
+import com.example.demo.shop.domain.Product;
 import com.example.demo.shop.repository.*;
 import com.example.demo.shop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;

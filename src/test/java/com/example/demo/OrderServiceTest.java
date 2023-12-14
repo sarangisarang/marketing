@@ -1,5 +1,5 @@
 package com.example.demo;
-import com.example.demo.shop.*;
+import com.example.demo.shop.domain.*;
 import com.example.demo.shop.repository.*;
 import com.example.demo.shop.service.*;
 import org.junit.jupiter.api.Assertions;
